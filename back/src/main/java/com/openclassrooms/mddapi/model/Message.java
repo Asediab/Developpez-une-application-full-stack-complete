@@ -9,17 +9,14 @@ import lombok.experimental.Accessors;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "MESSAGES")
 @Getter
 @Setter
-@EqualsAndHashCode
-@Accessors(chain = true)
 @EntityListeners(AuditingEntityListener.class)
-@Builder
 @NoArgsConstructor(force = true)
-@RequiredArgsConstructor
 @AllArgsConstructor
 @ToString
 public class Message {
@@ -33,6 +30,7 @@ public class Message {
 
     @NotBlank
     @Size(max = 500)
+    @NotBlank
     private String message;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -44,4 +42,16 @@ public class Message {
     @JoinColumn(name = "post_id")
     @ToString.Exclude
     private Post post;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Message message1)) return false;
+        return Objects.equals(id, message1.id) && Objects.equals(createdAt, message1.createdAt) && Objects.equals(message, message1.message) && Objects.equals(post, message1.post);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, createdAt, message, post);
+    }
 }

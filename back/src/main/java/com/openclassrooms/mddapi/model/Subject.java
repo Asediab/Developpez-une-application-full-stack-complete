@@ -7,21 +7,14 @@ import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "SUBJECTS")
 @Getter
 @Setter
-@EqualsAndHashCode
-@Accessors(chain = true)
 @EntityListeners(AuditingEntityListener.class)
-@Builder
 @NoArgsConstructor(force = true)
-@RequiredArgsConstructor
 @AllArgsConstructor
 @ToString
 public class Subject {
@@ -42,4 +35,16 @@ public class Subject {
     @ManyToMany(mappedBy = "subjects")
     @ToString.Exclude
     private Set<User> users = new HashSet<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Subject subject)) return false;
+        return Objects.equals(id, subject.id) && Objects.equals(topic, subject.topic) && Objects.equals(description, subject.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, topic, description);
+    }
 }

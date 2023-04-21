@@ -2,16 +2,18 @@ package com.openclassrooms.mddapi.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-import lombok.experimental.Accessors;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "USERS", uniqueConstraints = {
@@ -19,34 +21,29 @@ import java.util.*;
 })
 @Getter
 @Setter
-@EqualsAndHashCode
-@Accessors(chain = true)
-@EntityListeners(AuditingEntityListener.class)
-@Builder
-@NoArgsConstructor(force = true)
-@RequiredArgsConstructor
-@AllArgsConstructor
 @ToString
+@EntityListeners(AuditingEntityListener.class)
+@NoArgsConstructor(force = true)
+@AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
     @Size(max = 50)
     @Email
+    @NotBlank
     private String email;
 
-    @NonNull
     @Size(max = 20)
     @Column(name = "first_name")
+    @NotBlank
     private String firstName;
 
-    @NonNull
     @Size(max = 120)
+    @NotBlank
     private String password;
 
-    @NonNull
     private boolean admin;
 
     @CreatedDate
@@ -64,6 +61,18 @@ public class User {
     @JoinTable(name = "SUBSCRIPTIONS",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "subject_id"))
+    @ToString.Exclude
     private Set<Subject> subjects = new HashSet<>();
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User user)) return false;
+        return admin == user.admin && Objects.equals(id, user.id) && Objects.equals(email, user.email) && Objects.equals(firstName, user.firstName) && Objects.equals(password, user.password) && Objects.equals(createdAt, user.createdAt) && Objects.equals(updatedAt, user.updatedAt);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, email, firstName, password, admin, createdAt, updatedAt);
+    }
 }
