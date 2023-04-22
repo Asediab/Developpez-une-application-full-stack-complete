@@ -4,13 +4,14 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-import lombok.experimental.Accessors;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.*;
 
 @Entity
-@Table(name = "SUBJECTS")
+@Table(name = "SUBJECTS", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "title")
+})
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)
@@ -23,13 +24,13 @@ public class Subject {
     private Long id;
 
     @NotBlank
-    @Column(name = "topic")
+    @Column(name = "title")
     @Size(max = 255)
-    private String topic;
+    private String title;
 
     @NotBlank
     @Column(name = "description", length = 2000)
-    @Size(max = 255)
+    @Size(max = 500)
     private String description;
 
     @ManyToMany(mappedBy = "subjects")
@@ -40,11 +41,11 @@ public class Subject {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Subject subject)) return false;
-        return Objects.equals(id, subject.id) && Objects.equals(topic, subject.topic) && Objects.equals(description, subject.description);
+        return Objects.equals(id, subject.id) && Objects.equals(title, subject.title) && Objects.equals(description, subject.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, topic, description);
+        return Objects.hash(id, title, description);
     }
 }
