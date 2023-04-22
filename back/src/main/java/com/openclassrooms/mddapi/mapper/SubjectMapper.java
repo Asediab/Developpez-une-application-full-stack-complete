@@ -5,10 +5,12 @@ import com.openclassrooms.mddapi.model.Subject;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
+import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.CDI)
+@Component
+@Mapper(componentModel = "spring")
 public interface SubjectMapper {
     SubjectDto toDto(Subject subject);
-    @Mapping(target = "users", expression = "java(java.util.Collections.emptySet())")
+    @Mapping(target = "users", ignore = true)
     Subject toEntity(SubjectDto subjectDto);
 }

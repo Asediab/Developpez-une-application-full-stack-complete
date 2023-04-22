@@ -6,35 +6,41 @@ import com.openclassrooms.mddapi.model.Message;
 import com.openclassrooms.mddapi.model.Post;
 import com.openclassrooms.mddapi.service.SubjectService;
 import com.openclassrooms.mddapi.service.UserService;
+import com.openclassrooms.mddapi.service.impl.SubjectServiceImpl;
+import com.openclassrooms.mddapi.service.impl.UserServiceImpl;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.CDI)
+@Component
+@Mapper(componentModel = "spring")
 public abstract class PostMapper {
     @Autowired
-    protected UserService userService;
+    protected UserServiceImpl userService;
     @Autowired
-    protected SubjectService subjectService;
-    @Mapping(target = "authorFirstName", source = "author.firstName")
-    @Mapping(target = "subjectId", source = "subject.id")
-    @Mapping(target = "authorId", source = "author.id")
+    protected SubjectServiceImpl subjectService;
+    @Mapping(target = "authorFirstName", expression =
+            "java(post.getAuthor() != null ? post.getAuthor().getFirstName() : null)")
+    @Mapping(target = "subjectId", expression =
+            "java(post.getSubject() != null ? post.getSubject().getId() : null)")
+    @Mapping(target = "authorId", expression =
+            "java(post.getAuthor() != null ? post.getAuthor().getId() : null)")
     public abstract PostDto toDto(Post post);
 
-    // TODO ferify mapping of MessageDto in PostDto
     @Mapping(target = "subject", expression =
             "java(postDto.getSubjectId() != null ? this.subjectService.getById(postDto.getSubjectId()) : null)")
     @Mapping(target = "author", expression =
             "java(postDto.getAuthorId() != null ? this.userService.getById(postDto.getAuthorId()) : null)")
     public abstract Post toEntity(PostDto postDto);
 
-    @Mapping(target = "authorId", source = "author.id")
-    @Mapping(target = "postId", source = "post.id")
-    @Mapping(target = "authorFirstName", source = "author.firstName")
+    @Mapping(target = "authorId", source = "message.author.id")
+    @Mapping(target = "postId", source = "message.post.id")
+    @Mapping(target = "authorFirstName", source = "message.author.firstName")
     public abstract MessageDto toDto(Message message);
 
-    @Mapping(target = "post", source = "")
-    @Mapping(target = "author", source = "")
+    @Mapping(target = "post", ignore = true)
+    @Mapping(target = "author", ignore = true)
     public abstract Message toEntity(MessageDto messageDto);
 }

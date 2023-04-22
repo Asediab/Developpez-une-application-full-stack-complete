@@ -4,17 +4,21 @@ import com.openclassrooms.mddapi.dto.MessageDto;
 import com.openclassrooms.mddapi.model.Message;
 import com.openclassrooms.mddapi.service.PostService;
 import com.openclassrooms.mddapi.service.UserService;
+import com.openclassrooms.mddapi.service.impl.PostServiceImpl;
+import com.openclassrooms.mddapi.service.impl.UserServiceImpl;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.CDI)
+@Component
+@Mapper(componentModel = "spring")
 public abstract class MessageMapper {
     @Autowired
     protected PostService postService;
     @Autowired
-    protected UserService userService;
+    protected UserServiceImpl userService;
     @Mapping(target = "authorId", source = "author.id")
     @Mapping(target = "postId", source = "post.id")
     @Mapping(target = "authorFirstName", source = "author.firstName")

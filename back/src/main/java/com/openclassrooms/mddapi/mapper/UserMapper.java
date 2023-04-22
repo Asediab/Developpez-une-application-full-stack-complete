@@ -7,15 +7,17 @@ import com.openclassrooms.mddapi.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
+import org.springframework.stereotype.Component;
 
 
-@Mapper (componentModel = MappingConstants.ComponentModel.CDI)
+@Component
+@Mapper (componentModel = "spring")
 public interface UserMapper{
     UserDto toDto(User user);
     @Mapping(target = "subjects", source = "userDto.subjects")
     User toEntity(UserDto userDto);
 
     SubjectDto toDto(Subject subject);
-    @Mapping(target = "users", expression = "java(java.util.Collections.emptySet())")
+    @Mapping(target = "users", ignore = true)
     Subject toEntity(SubjectDto subjectDto);
 }

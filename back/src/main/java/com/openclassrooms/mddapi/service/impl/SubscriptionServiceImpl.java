@@ -3,10 +3,8 @@ package com.openclassrooms.mddapi.service.impl;
 import com.openclassrooms.mddapi.exeption.NotFoundException;
 import com.openclassrooms.mddapi.exeption.ObjectExisteException;
 import com.openclassrooms.mddapi.model.Subscription;
-import com.openclassrooms.mddapi.repository.SubjectRepository;
 import com.openclassrooms.mddapi.repository.SubscriptionRepository;
 import com.openclassrooms.mddapi.service.SubscriptionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
