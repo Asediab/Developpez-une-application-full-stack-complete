@@ -6,6 +6,7 @@ import com.openclassrooms.mddapi.model.Subscription;
 import com.openclassrooms.mddapi.repository.SubscriptionRepository;
 import com.openclassrooms.mddapi.service.SubscriptionService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class SubscriptionServiceImpl implements SubscriptionService {
@@ -16,28 +17,21 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
     @Override
-    public void subscribe(Long userId, Long subjectId) {
-        if (!subscribeExistence(userId, subjectId)) {
-            Subscription subscription = new Subscription();
-            subscription.setUserId(userId);
-            subscription.setSubjectId(subjectId);
+    public void subscribe(Subscription subscription) {
+        if (!subscribeExistence(subscription)) {
             this.subscriptionRepository.save(subscription);
-        }
-        throw new ObjectExisteException();
+        } else throw new ObjectExisteException();
     }
 
     @Override
-    public void unsubscribe(Long userId, Long subjectId) {
-        if (subscribeExistence(userId, subjectId)) {
-            Subscription subscription = new Subscription();
-            subscription.setUserId(userId);
-            subscription.setSubjectId(subjectId);
-            this.subscriptionRepository.save(subscription);
-        }
-        throw new NotFoundException();
+    @Transactional
+    public void unsubscribe(Subscription subscription) {
+        if (subscribeExistence(subscription)) {
+            this.subscriptionRepository.deleteByUserIdAndSubjectId(subscription.getUserId(), subscription.getSubjectId());
+        } else throw new NotFoundException("Subscription doesn't existe");
     }
 
-    private boolean subscribeExistence(Long userId, Long subjectId){
-        return this.subscriptionRepository.existsByUserIdAndSubjectId(userId, subjectId);
+    private boolean subscribeExistence(Subscription subscription) {
+        return this.subscriptionRepository.existsByUserIdAndSubjectId(subscription.getUserId(), subscription.getSubjectId());
     }
 }

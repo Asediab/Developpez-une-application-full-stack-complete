@@ -1,6 +1,7 @@
 package com.openclassrooms.mddapi.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,10 +22,14 @@ public class PostDto {
     @Size(max = 5000)
     @NotBlank
     private String description;
+    @NotNull
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    @NotNull
     private Long authorId;
+    @NotNull
     private String authorFirstName;
+    @NotNull
     private Long subjectId;
     List<MessageDto> messages;
 }

@@ -7,4 +7,5 @@ public interface UserService {
     User getById(Long userId);
     void delete(User user);
     User update(User user);
+    boolean userExistence(String email);
 }

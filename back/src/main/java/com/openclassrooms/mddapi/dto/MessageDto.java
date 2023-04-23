@@ -21,6 +21,7 @@ public class MessageDto {
     private String message;
     @NotNull
     private String authorFirstName;
+    @NotNull
     private Long authorId;
     @NotNull
     private Long postId;
