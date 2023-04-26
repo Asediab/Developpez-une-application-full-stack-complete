@@ -1,13 +1,19 @@
 package com.openclassrooms.mddapi.controller;
 
-import com.openclassrooms.mddapi.dto.UserDto;
+import com.openclassrooms.mddapi.dto.UserUpdateDto;
 import com.openclassrooms.mddapi.mapper.UserMapper;
+import com.openclassrooms.mddapi.mapper.UserUpdateMapper;
 import com.openclassrooms.mddapi.model.User;
 import com.openclassrooms.mddapi.service.UserService;
 import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Objects;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -16,10 +22,12 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private final UserService service;
     private final UserMapper mapper;
+    private final UserUpdateMapper updateMapper;
 
-    public UserController(UserService service, UserMapper mapper) {
+    public UserController(UserService service, UserMapper mapper, UserUpdateMapper updateMapper) {
         this.service = service;
         this.mapper = mapper;
+        this.updateMapper = updateMapper;
     }
 
     @GetMapping("/{id}")
@@ -44,11 +52,11 @@ public class UserController {
                 return ResponseEntity.notFound().build();
             }
 
-            // UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-            // if(!Objects.equals(userDetails.getUsername(), user.getEmail())) {
-            //    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-            // }
+            if (!Objects.equals(userDetails.getUsername(), user.getEmail())) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            }
 
             this.service.delete(user);
             return ResponseEntity.ok().build();
@@ -58,17 +66,17 @@ public class UserController {
     }
 
     @PutMapping
-    public ResponseEntity<?> update(@Valid @RequestBody UserDto userDto) {
-        User userOld = this.service.getById(userDto.getId());
+    public ResponseEntity<?> update(@Valid @RequestBody UserUpdateDto userUpdateDto) {
+        User userOld = this.service.getById(userUpdateDto.getId());
         if (userOld == null) {
             return ResponseEntity.notFound().build();
         }
-        // UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        // if(!Objects.equals(userDetails.getUsername(), user.getEmail())) {
-        //    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        // }
-        User userUpdated = this.service.update(this.mapper.toEntity(userDto));
-        return ResponseEntity.ok().body(this.mapper.toDto(userUpdated));
+        if (!Objects.equals(userDetails.getUsername(), userOld.getEmail())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        User userUpdated = this.service.update(this.updateMapper.toEntity(userUpdateDto));
+        return ResponseEntity.ok().body(this.updateMapper.toDto(userUpdated));
     }
 }

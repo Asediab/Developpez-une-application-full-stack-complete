@@ -1,7 +1,7 @@
 package com.openclassrooms.mddapi.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -15,7 +15,8 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
-public class UserDto {
+public class UserUpdateDto {
+
     private Long id;
     @Size(max = 50)
     @Email
@@ -25,7 +26,7 @@ public class UserDto {
     @NotNull
     private String firstName;
     private boolean admin;
-    @JsonIgnore
+    @NotBlank
     @Size(max = 120)
     private String password;
     @NotNull
