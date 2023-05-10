@@ -2,17 +2,12 @@ package com.openclassrooms.mddapi.mapper;
 
 import com.openclassrooms.mddapi.dto.MessageDto;
 import com.openclassrooms.mddapi.dto.PostDto;
-import com.openclassrooms.mddapi.dto.SubjectDto;
 import com.openclassrooms.mddapi.model.Message;
 import com.openclassrooms.mddapi.model.Post;
-import com.openclassrooms.mddapi.model.Subject;
-import com.openclassrooms.mddapi.service.SubjectService;
-import com.openclassrooms.mddapi.service.UserService;
 import com.openclassrooms.mddapi.service.impl.SubjectServiceImpl;
 import com.openclassrooms.mddapi.service.impl.UserServiceImpl;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.MappingConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +20,7 @@ public abstract class PostMapper {
     protected UserServiceImpl userService;
     @Autowired
     protected SubjectServiceImpl subjectService;
+
     @Mapping(target = "authorFirstName", expression =
             "java(post.getAuthor() != null ? post.getAuthor().getFirstName() : null)")
     @Mapping(target = "subjectId", expression =
@@ -40,6 +36,7 @@ public abstract class PostMapper {
     public abstract Post toEntity(PostDto postDto);
 
     public abstract List<PostDto> mapToDto(List<Post> posts);
+
     public abstract List<Post> mapToEntity(List<PostDto> postsDto);
 
     @Mapping(target = "authorId", source = "message.author.id")
