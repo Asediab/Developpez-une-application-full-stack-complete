@@ -1,0 +1,81 @@
+.active {
+  color: #6c5ccf;
+}
+
+header {
+  border-bottom: 1px solid black;
+}
+
+header mat-toolbar {
+  height: 94px;
+  background-color: #fff;
+  padding: 0 16px 0 22px;
+}
+
+header img {
+  max-height: 81px;
+  cursor: pointer;
+}
+
+header button:not(:last-child),
+header button:not(:first-child) {
+  padding: 0;
+  width: 4.7em;
+}
+
+#button-user {
+  margin: 0 1.375rem;
+}
+
+.menu-spacer {
+  flex: 1 1 auto;
+}
+
+#menu-mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#menu-mobile button:not(:last-child) {
+  padding: 0;
+  width: 4em;
+}
+
+#menu-mobile #button-user {
+  max-width: 48px;
+  margin: 0;
+  position: absolute;
+  bottom: 5px;
+}
+
+button.button-image {
+  max-height: 81px;
+  background: transparent;
+  border: transparent;
+}
+
+::ng-deep .app-dialog-container mat-dialog-container {
+  padding: 61px 9px 5px 0px;
+  border-radius: 0px;
+  border: 1px solid black;
+}
+
+@media only screen and (max-width: 599.98px) {
+  button.button-image {
+    max-height: 53px;
+  }
+  header mat-toolbar {
+    height: 62px;
+    padding-left: 5px;
+  }
+  header img {
+    max-height: 53px;
+  }
+  header img:last-child {
+    margin: 0;
+  }
+  header button {
+    margin-right: 0px;
+  }
+}

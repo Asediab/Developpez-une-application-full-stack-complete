@@ -34,7 +34,7 @@ public class PostController {
         this.subjectMapper = subjectMapper;
     }
 
-    @GetMapping
+    @PostMapping
     public ResponseEntity<?> findAllPostsByUser(@Valid @RequestBody UserDto userDto) {
         List<Post> posts = this.service.getAllPostByUserSubscription(subjectMapper.mapToEntity(userDto.getSubjects()));
         if (!posts.isEmpty()) {
@@ -57,7 +57,7 @@ public class PostController {
         }
     }
 
-    @PostMapping
+    @PostMapping("/new")
     public ResponseEntity<?> create(@Valid @RequestBody PostDto postDto) {
         log.info(postDto);
         this.service.create(this.mapper.toEntity(postDto));

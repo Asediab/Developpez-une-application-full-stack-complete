@@ -12,7 +12,7 @@ public interface UserService {
 
     void delete(User user);
 
-    User update(User user);
+    ResponseEntity<?> update(User user);
 
     boolean userExistence(String email);
 

@@ -1,0 +1,69 @@
+<header *ngIf="isDesktop; else isMobile">
+  <nav aria-label="Main navigation">
+    <mat-toolbar role="menubar">
+      <button
+        class="button-image"
+        role="menuitem"
+        routerLink=""
+        aria-label="App"
+      >
+        <img src="/assets/logo_p6.png" alt="Logo"/>
+      </button>
+      <span class="menu-spacer"></span>
+      <button
+        *ngIf="shouldShowMenu()"
+        role="menuitem"
+        mat-button
+        routerLink="posts"
+        routerLinkActive="active"
+      >
+        Articles
+      </button>
+      <button
+        *ngIf="shouldShowMenu()"
+        role="menuitem"
+        mat-button
+        routerLink="subjects"
+        routerLinkActive="active"
+      >
+        Thèmes
+      </button>
+      <button
+        *ngIf="shouldShowMenu()"
+        id="button-user"
+        class="button-image"
+        role="menuitem"
+        routerLink="me"
+        aria-label="User account"
+      >
+        <img src="/assets/account.png" alt="User account"/>
+      </button>
+    </mat-toolbar>
+  </nav>
+</header>
+<ng-template #isMobile>
+  <header>
+    <nav aria-label="Main navigation">
+      <mat-toolbar role="menubar">
+        <button
+          class="button-image"
+          role="menuitem"
+          routerLink=""
+          aria-label="App"
+        >
+          <img src="/assets/logo_p6.png" alt="Logo"/>
+        </button>
+        <span class="menu-spacer"></span>
+        <button
+          *ngIf="shouldShowMenu()"
+          class="button-image"
+          role="menuitem"
+          aria-label="Toggle navigation"
+          (click)="openMenu()"
+        >
+          <img src="/assets/menu-burger%20(1).png" alt="Toggle navigation"/>
+        </button>
+      </mat-toolbar>
+    </nav>
+  </header>
+</ng-template>

@@ -4,8 +4,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {HomeComponent} from './pages/home/home.component';
-import {NotFoundComponent} from './components/not-found/not-found.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
 import {MatToolbarModule} from "@angular/material/toolbar";
@@ -13,7 +11,10 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {FlexLayoutModule, FlexModule} from "@angular/flex-layout";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {SharedModulesModule} from "./shared-modules/shared-modules.module";
+import {AuthModule} from "./features/auth/auth.module";
+import {JwtInterceptor} from "./interceptors/jwt.interceptor";
 
 
 const materialModule = [
@@ -27,9 +28,7 @@ const materialModule = [
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent,
-    NotFoundComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -39,10 +38,13 @@ const materialModule = [
     ReactiveFormsModule,
     HttpClientModule,
     FlexLayoutModule,
-    FlexModule
+    FlexModule,
+    SharedModulesModule,
+    AuthModule
   ],
-  //TODO providers
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {

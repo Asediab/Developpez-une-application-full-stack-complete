@@ -2,7 +2,7 @@ import {ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
 
 import {RegisterComponent} from './register.component';
 import {AuthService} from "../../services/auth.service";
-import {SessionService} from "../../../../services/session.service";
+import {SessionService} from "../../services/session.service";
 import {Router} from "@angular/router";
 import {RouterTestingModule} from "@angular/router/testing";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -13,7 +13,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {By} from "@angular/platform-browser";
-import {of, throwError} from "rxjs";
+import {throwError} from "rxjs";
 import {RegisterRequest} from "../../interfaces/registerRequest";
 
 describe('RegisterComponent', () => {
@@ -109,7 +109,7 @@ describe('RegisterComponent', () => {
   });
 
   test('Redirect to /login when Send a request with valid RegisterRequest', async () => {
-    jest.spyOn(authService, 'register').mockReturnValue(of(undefined));
+    //jest.spyOn(authService, 'register').mockReturnValue(of(undefined));
     jest.spyOn(sessionService, 'logIn');
     jest.spyOn(component, 'submit');
 

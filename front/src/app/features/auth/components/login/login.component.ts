@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {SessionService} from "../../../../services/session.service";
+import {SessionService} from "../../services/session.service";
 import {LoginRequest} from "../../interfaces/loginRequest";
-import {SessionInformation} from "../../../../interfaces/sessionInformation.interface";
+import {SessionInformation} from "../../interfaces/sessionInformation.interface";
+import {Location} from '@angular/common';
 import {AuthService} from "../../services/auth.service";
 
 @Component({
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService,
               private fb: FormBuilder,
               private router: Router,
-              private sessionService: SessionService) {
+              private sessionService: SessionService,
+              private location: Location) {
   }
 
   ngOnInit(): void {
@@ -49,9 +51,13 @@ export class LoginComponent implements OnInit {
       next: (response: SessionInformation) => {
         this.sessionService.logIn(response);
         // TODO navigate and AuthService
-        this.router.navigate(['']);
+        this.router.navigate(['/posts']);
       },
       error: error => this.onError = true,
     });
+  }
+
+  public return() {
+    this.location.back();
   }
 }

@@ -1,0 +1,33 @@
+<div class="mat-typography" cdkTrapFocus>
+  <nav id="menu-mobile" aria-label="Main mobile navigation">
+    <button
+      role="menuitem"
+      mat-button
+      routerLink="posts"
+      (click)="closeMenu()"
+      routerLinkActive="active"
+    >
+      Articles
+    </button>
+    <button
+      role="menuitem"
+      mat-button
+      routerLink="subjects"
+      (click)="closeMenu()"
+      routerLinkActive="active"
+    >
+      Thèmes
+    </button>
+
+    <button
+      id="button-user"
+      class="button-image"
+      role="menuitem"
+      routerLink="me"
+      (click)="closeMenu()"
+      aria-label="User account"
+    >
+      <img src="/assets/account.png" alt="User account"/>
+    </button>
+  </nav>
+</div>

@@ -66,20 +66,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(User user) {
+    public ResponseEntity<?> update(User user) {
         User oldUser = this.userRepository.findById(user.getId()).orElse(null);
         if (oldUser != null && userExistence(oldUser.getEmail())) {
             User newUser = new User();
             newUser.setId(user.getId());
             newUser.setEmail(user.getEmail());
             newUser.setFirstName(user.getFirstName());
-            if (!user.getPassword().trim().isEmpty()) {
-                String passWord = encoder.encode(user.getPassword());
-                newUser.setPassword(passWord);
-            }
+            String passWord = encoder.encode(user.getPassword());
+            newUser.setPassword(passWord);
             newUser.setCreatedAt(user.getCreatedAt());
             newUser.setUpdatedAt(LocalDateTime.now());
-            return this.userRepository.save(newUser);
+            this.userRepository.save(newUser);
+            return createToken(user.getEmail(), user.getPassword());
         } else throw new NotFoundException("User isn't found");
     }
 

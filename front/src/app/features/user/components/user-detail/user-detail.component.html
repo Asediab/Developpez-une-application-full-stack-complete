@@ -1,0 +1,77 @@
+<section>
+  <h1>Profil utilisateur</h1>
+  <form
+    *ngIf="user"
+    class="login-form"
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+  >
+    <mat-form-field
+      class="input-first"
+      appearance="outline"
+      floatLabel="always"
+    >
+      <mat-label class="custom-label">Nom d'utilisateur</mat-label>
+      <input matInput formControlName="username"/>
+    </mat-form-field>
+    <mat-form-field
+      class="input-first"
+      appearance="outline"
+      floatLabel="always"
+    >
+      <mat-label class="custom-label">Adresse e-mail</mat-label>
+      <input matInput formControlName="email"/>
+    </mat-form-field>
+    <mat-form-field appearance="outline" floatLabel="always">
+      <mat-label class="custom-label">Mot de passe</mat-label>
+      <input
+        style="max-height: 50px"
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        formControlName="password"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+    <button
+      class="button-last"
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="form.invalid"
+    >
+      Sauvegarder
+    </button>
+    <p *ngIf="onError" class="error">An error occurred</p>
+    <button class="button-disconnect" mat-button color="warn" (click)="logOut()">
+      Se déconnecter
+    </button>
+  </form>
+  <mat-divider></mat-divider>
+  <h2>Abonnements</h2>
+  <ng-container *ngIf="subjects; else loading">
+    <div class="list-subject" *ngIf="subjects.length">
+      <div *ngFor="let subject of subjects">
+        <app-subject-card
+          (subscribe)="unSubscribe($event)"
+          [subject]="subject"
+          [isDesktop]="isDesktop"
+        >
+        </app-subject-card>
+      </div>
+    </div>
+    <div class="list-subject" *ngIf="!subjects.length">
+      <p>No subjects to subscribe</p>
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </ng-template>
+</section>

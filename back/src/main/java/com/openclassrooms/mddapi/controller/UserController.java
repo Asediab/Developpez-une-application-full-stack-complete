@@ -83,7 +83,6 @@ public class UserController {
         if (!Objects.equals(userDetails.getUsername(), userOld.getEmail())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        User userUpdated = this.service.update(this.updateMapper.toEntity(userUpdateDto));
-        return ResponseEntity.ok().body(this.updateMapper.toDto(userUpdated));
+        return this.service.update(this.updateMapper.toEntity(userUpdateDto));
     }
 }

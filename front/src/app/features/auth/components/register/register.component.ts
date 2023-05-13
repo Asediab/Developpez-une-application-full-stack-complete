@@ -2,7 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
+import {Location} from '@angular/common';
 import {RegisterRequest} from "../../interfaces/registerRequest";
+import {SessionService} from "../../services/session.service";
+import {SessionInformation} from "../../interfaces/sessionInformation.interface";
 
 @Component({
   selector: 'app-register',
@@ -12,6 +15,7 @@ import {RegisterRequest} from "../../interfaces/registerRequest";
 export class RegisterComponent implements OnInit {
 
   public onError = false;
+  public hide = true;
   public form!: FormGroup;
   private REGEX: RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}$/;
 
@@ -44,16 +48,24 @@ export class RegisterComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private fb: FormBuilder,
-              private router: Router) {
+              private router: Router,
+              private sessionService: SessionService,
+              private location: Location) {
   }
 
   public submit(): void {
     const registerRequest = this.form.value as RegisterRequest;
     this.authService.register(registerRequest).subscribe({
-        next: (_: void) => this.router.navigate(['/login']),
-        error: _ => this.onError = true,
-      }
-    );
+      next: (response: SessionInformation) => {
+        this.sessionService.logIn(response);
+        this.router.navigate(['/posts']);
+      },
+      error: error => this.onError = true,
+    });
+  }
+
+  public return() {
+    this.location.back();
   }
 }
 

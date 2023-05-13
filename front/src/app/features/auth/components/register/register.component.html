@@ -1,4 +1,13 @@
-<div class="register" fxLayout="row" fxLayoutAlign="center center">
+<button
+  class="ass-button-image"
+  aria-label="Return to previous page"
+  (click)="return()"
+
+>
+  <img src="/assets/arrow_left.png" alt="Return"/>
+</button>
+<img class="form-logo" src="/assets/logo_p6.png" alt="Logo"/>
+<div class="register" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10">
   <mat-card>
     <mat-card-header fxLayoutAlign="center center">
       <mat-card-title>Inscription</mat-card-title>
@@ -6,16 +15,28 @@
     <form class="register-form" [formGroup]="form" (ngSubmit)="submit()">
       <mat-card-content fxLayout="column">
         <mat-form-field fxFlex>
+          <mat-label class="custom-label">Nom d'utilisateur</mat-label>
           <input matInput placeholder="First name" formControlName="firstName">
         </mat-form-field>
         <mat-form-field fxFlex>
+          <mat-label class="custom-label">Adresse e-mail</mat-label>
           <input matInput placeholder="Email" formControlName="email">
         </mat-form-field>
         <mat-form-field fxFlex>
+          <mat-label class="custom-label">Mot de passe</mat-label>
           <input matInput placeholder="Password" formControlName="password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
         </mat-form-field>
       </mat-card-content>
-      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
+      <div fxLayout="column">
+        <button fxFlexAlign="center" class="button-submit" mat-raised-button color="primary"
+                type="submit"
+                [disabled]="form.invalid">Submit
+        </button>
+      </div>
       <span *ngIf="onError" class="error ml2">An error occurred</span>
     </form>
   </mat-card>

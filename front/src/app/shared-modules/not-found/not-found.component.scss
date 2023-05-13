@@ -1,0 +1,29 @@
+.container404 {
+  height: 80vh;
+  width: 100vw;
+  box-sizing: content-box;
+  font-weight: 700;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-image: url("~src/assets/404.jpg");
+  background-size: cover;
+  background-position-x: 40%;
+  background-position-y: 30%;
+}
+
+.container404 p {
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+  font-weight: 700;
+  font-size: 4rem;
+  text-align: center;
+  line-height: 5rem;
+}
+
+.container404 p span {
+  font-size: 8rem;
+}
+
