@@ -1,0 +1,71 @@
+.container-create-article button.button-go-back {
+  position: absolute;
+  max-height: 23px;
+  margin-top: 5px;
+  margin-left: 22px;
+}
+
+.container-create-article h1 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 29px;
+  text-align: center;
+  height: 41px;
+  margin: 26px 0 31px 0;
+}
+
+/* form */
+.create-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  width: 17.56rem;
+}
+
+.create-form mat-form-field {
+  width: 17.56rem;
+  font-size: 20px;
+}
+
+.create-form
+::ng-deep
+.mat-form-field-appearance-outline
+.mat-form-field-infix {
+  padding: 0.05rem 0 0.55rem 0;
+}
+
+.create-form ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0.5rem;
+}
+
+.create-form button.button-last {
+  margin: 30px 0 31px 0;
+  height: 40px;
+  width: 139px;
+}
+
+.create-form textarea {
+  height: 186px;
+}
+
+@media only screen and (max-width: 599.98px) {
+  .container-create-article button.button-go-back {
+    top: 91px;
+    margin-left: 14px;
+  }
+  .container-create-article h1 {
+    margin: 84px 0 10px 0;
+  }
+  .create-form {
+    width: 15.625rem;
+    padding-top: 0px;
+    margin: 0 auto;
+  }
+  .create-form mat-form-field {
+    width: 15.625rem;
+  }
+  .create-form .buttonbutton-last {
+    margin: 25px 0 23px 0;
+  }
+}

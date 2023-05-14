@@ -5,6 +5,8 @@ import com.openclassrooms.mddapi.repository.MessageRepository;
 import com.openclassrooms.mddapi.service.MessageService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class MessageServiceImpl implements MessageService {
     private final MessageRepository messageRepository;
@@ -15,6 +17,7 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public Message save(Message message) {
+        message.setCreatedAt(LocalDateTime.now());
         return this.messageRepository.save(message);
     }
 }

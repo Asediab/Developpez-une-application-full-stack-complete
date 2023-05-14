@@ -1,1 +1,54 @@
-<p>post-detail works!</p>
+<ng-container *ngIf="post; else loadingComments">
+  <section>
+    <button
+      class="yl-button-image-accessibility button-go-back"
+      aria-label="Return to previous page"
+      (click)="return()"
+    >
+      <img src="/assets/arrow_left.png" alt="Return"/>
+    </button>
+    <h1>{{ post.title | uppercase }}</h1>
+    <p class="subtitle">
+      <span>{{ post.createdAt | date : "d MMMM yyyy" }}</span>
+      <span>{{ post.authorFirstName }}</span>
+      <span>{{ post.subject }}</span>
+    </p>
+    <p class="content">{{ post.description }}</p>
+    <mat-divider></mat-divider>
+
+    <p class="title-comment">Commentaires</p>
+
+    <div *ngIf="post.messages?.length">
+      <app-comments
+        *ngFor="let comment of post.messages"
+        [message]="comment"
+      ></app-comments>
+    </div>
+    <p *ngIf="!post.messages?.length">
+      <span class="no-comment">No comment available</span>
+    </p>
+    <form class="comment-form" [formGroup]="form" (ngSubmit)="submit()">
+      <mat-form-field class="input-first" appearance="outline">
+        <textarea
+          matInput
+          placeholder="Écrivez ici votre commentaire"
+          formControlName="message"
+        ></textarea>
+      </mat-form-field>
+      <button
+        class="yl-button-image-accessibility button-submit"
+        aria-label="Send comment"
+        type="submit"
+        [disabled]="form.invalid"
+      >
+        <img src="./assets/send.png"
+             [alt]="form.invalid ? 'Type a comment to send it' : 'Send comment'"
+        />
+      </button>
+      <p *ngIf="onError" class="error">An error occurred</p>
+    </form>
+  </section>
+</ng-container>
+<ng-template #loadingComments>
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</ng-template>

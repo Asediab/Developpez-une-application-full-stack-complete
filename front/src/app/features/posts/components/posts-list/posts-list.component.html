@@ -1,1 +1,34 @@
-<p>posts-list works!</p>
+<section>
+  <ng-container *ngIf="posts as data; else loading">
+    <div class="action-container">
+      <button class="button-create" mat-raised-button color="primary" (click)="newPost()">
+        Créer un article
+      </button>
+      <span class="action-spacer"></span>
+      <button
+        *ngIf="data.length"
+        class="button-image-order"
+        [attr.aria-label]="'Order by '+sortDirection+' date'"
+        (click)="orderByDAte()"
+      >
+        Trier par
+        <img
+          src="/assets/arrow-small-down.png"
+          alt="Order by date"
+          [style]="
+            sortDirection == 'descending' ? {} : { transform: 'rotate(180deg)' }
+          "
+        />
+      </button>
+    </div>
+    <div class="list-article" *ngIf="data.length">
+      <app-post-card *ngFor="let post of data" [post]="post"></app-post-card>
+    </div>
+    <div class="list-article" *ngIf="!data.length">
+      <p>No post available</p>
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </ng-template>
+</section>

@@ -14,12 +14,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(force = true)
 public class MessageDto {
     private Long id;
-    @NotNull
     private LocalDateTime createdAt;
     @NotBlank
     @Size(max = 500)
     private String message;
-    @NotNull
     private String authorFirstName;
     @NotNull
     private Long authorId;

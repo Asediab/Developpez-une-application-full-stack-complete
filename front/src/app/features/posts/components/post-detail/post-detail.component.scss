@@ -1,0 +1,140 @@
+button.button-go-back {
+  position: absolute;
+  max-height: 23px;
+  margin-top: 5px;
+  margin-left: 22px;
+}
+
+h1 {
+  margin: 38px 23px 27px 84px;
+  line-height: 29px;
+  font-weight: 600;
+  font-size: 24px;
+  text-transform: lowercase;
+}
+
+h1::first-letter {
+  text-transform: capitalize;
+}
+
+.subtitle {
+  margin: 0 9px 21px 84px;
+  line-height: 24px;
+  display: flex;
+  column-gap: 50px;
+  row-gap: 13px;
+  flex-wrap: wrap;
+}
+
+.subtitle span {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.subtitle span::first-letter {
+  text-transform: capitalize;
+}
+
+.content {
+  margin: 0 9px 0px 84px;
+  padding-bottom: 27px;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.mat-divider {
+  border-color: black;
+  margin: 0 29px 30px 93px;
+}
+
+.title-comment {
+  font-size: 20px;
+  line-height: 24px;
+  margin: 0 9px 30px 85px;
+}
+
+.no-comment {
+  margin-left: 129px;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+form.comment-form {
+  width: 68.26%;
+  min-height: 120px;
+  margin-left: calc(15.87% + 40px);
+  display: flex;
+  align-items: center;
+  margin-bottom: 17px;
+}
+
+form mat-form-field {
+  min-height: 120px;
+  flex-basis: 100%;
+  margin: auto;
+}
+
+textarea {
+  width: 100%;
+  min-height: 120px;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+form button.button-submit {
+  margin-left: 31px;
+}
+
+@media only screen and (max-width: 599.98px) {
+  button.button-go-back {
+    top: 82px;
+    margin-left: 14px;
+  }
+  h1 {
+    margin: 22px 19px 30px 81px;
+    font-weight: 600;
+    font-size: 24px;
+  }
+  .subtitle {
+    margin: 0 19px 13px 14px;
+    column-gap: 50px;
+    row-gap: 13px;
+    flex-wrap: wrap;
+  }
+  .content {
+    margin: 0 19px 0px 14px;
+    padding-bottom: 30px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+  .mat-divider {
+    border-color: black;
+    margin: 0 19px 13px 14px;
+  }
+  .title-comment {
+    margin: 0 19px 28px 14px;
+  }
+  .no-comment {
+    margin-left: 26px;
+  }
+  form.comment-form {
+    margin: 0 0 1px 0;
+    min-width: 100%;
+    position: relative;
+  }
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper {
+    padding: 0;
+    margin: 0 !important;
+  }
+  form mat-form-field {
+    position: relative;
+    width: 100%;
+  }
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding-right: 64px;
+  }
+  form button.button-submit {
+    position: absolute;
+    right: 16px;
+  }
+}

@@ -1,0 +1,74 @@
+button {
+  display: flex;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 8px;
+  border: none;
+  width: 22.37rem;
+  height: 11.25rem;
+  text-align: left;
+  padding: 12px 20px 14px 18px;
+}
+
+button mat-card-title {
+  font-weight: 700;
+  font-size: 1rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 2.19rem;
+  width: 100%;
+}
+
+button mat-card-title::first-letter {
+  text-transform: capitalize;
+}
+
+button mat-card-subtitle {
+  font-size: 0.8rem;
+  height: 2rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  color: black;
+  width: 100%;
+}
+
+button mat-card-content {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  white-space: pre-wrap;
+}
+
+button mat-card-content p {
+  margin: 0;
+}
+
+button mat-card-subtitle span.post-date {
+  display: inline-block;
+  width: 43%;
+}
+
+@media only screen and (max-width: 599.98px) {
+  button {
+    max-width: 16.56rem;
+    height: 8.25rem;
+    text-align: left;
+    padding: 8px 15px 10px 13px;
+  }
+  button mat-card-title {
+    height: 1.6rem;
+  }
+  button mat-card-subtitle {
+    height: 1.5rem;
+  }
+  button mat-card-subtitle span.post-date {
+    width: 42%;
+  }
+  button mat-card-content {
+    -webkit-line-clamp: 4;
+  }
+}

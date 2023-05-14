@@ -1,9 +1,7 @@
 package com.openclassrooms.mddapi.controller;
 
 import com.openclassrooms.mddapi.dto.PostDto;
-import com.openclassrooms.mddapi.dto.UserDto;
 import com.openclassrooms.mddapi.mapper.PostMapper;
-import com.openclassrooms.mddapi.mapper.SubjectMapper;
 import com.openclassrooms.mddapi.model.Post;
 import com.openclassrooms.mddapi.service.PostService;
 import jakarta.validation.Valid;
@@ -26,17 +24,15 @@ import java.util.List;
 public class PostController {
     private final PostService service;
     private final PostMapper mapper;
-    private final SubjectMapper subjectMapper;
 
-    public PostController(PostService service, PostMapper mapper, SubjectMapper subjectMapper) {
+    public PostController(PostService service, PostMapper mapper) {
         this.service = service;
         this.mapper = mapper;
-        this.subjectMapper = subjectMapper;
     }
 
-    @PostMapping
-    public ResponseEntity<?> findAllPostsByUser(@Valid @RequestBody UserDto userDto) {
-        List<Post> posts = this.service.getAllPostByUserSubscription(subjectMapper.mapToEntity(userDto.getSubjects()));
+    @GetMapping
+    public ResponseEntity<?> findAllPostsByUser() {
+        List<Post> posts = this.service.getAllPostByUserSubscription();
         if (!posts.isEmpty()) {
             return ResponseEntity.ok().body(this.mapper.mapToDto(posts));
         }
@@ -60,8 +56,8 @@ public class PostController {
     @PostMapping("/new")
     public ResponseEntity<?> create(@Valid @RequestBody PostDto postDto) {
         log.info(postDto);
-        this.service.create(this.mapper.toEntity(postDto));
+        Post postDto1 = this.service.create(this.mapper.toEntity(postDto));
         log.info(this.mapper.toEntity(postDto));
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(this.mapper.toDto(postDto1));
     }
 }

@@ -7,7 +7,8 @@ export interface PostInterface {
   authorId: number;
   authorFirstName: string;
   subjectId: number;
-  createdAt: Date;
+  subject: string;
+  createdAt?: Date;
   updatedAt?: Date;
   messages?: MessageInterface[];
 }

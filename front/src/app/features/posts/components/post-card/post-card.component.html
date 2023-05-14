@@ -1,1 +1,18 @@
-<p>post-card works!</p>
+<button
+  (click)="onPostDetail()"
+  mat-card
+  matRipple
+  color="primary"
+  [attr.aria-label]="(post.createdAt | date:'shortDate') + ' - ' + post.title"
+  role="button"
+  tabindex="0"
+>
+  <mat-card-title>{{ post.title }}</mat-card-title>
+  <mat-card-subtitle>
+    <span class="post-date">{{ post.createdAt | date : "dd-MM-YY" }} </span>
+    <span> {{ post.authorFirstName }}</span>
+  </mat-card-subtitle>
+  <mat-card-content>
+    <p>{{ post.description }}</p>
+  </mat-card-content>
+</button>
