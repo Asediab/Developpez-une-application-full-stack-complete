@@ -28,9 +28,9 @@
   font-size: 20px;
 }
 
-.create-form
-::ng-deep
-.mat-form-field-appearance-outline
+.create-form,
+::ng-deep,
+.mat-form-field-appearance-outline,
 .mat-form-field-infix {
   padding: 0.05rem 0 0.55rem 0;
 }
@@ -59,7 +59,7 @@
   }
   .create-form {
     width: 15.625rem;
-    padding-top: 0px;
+    padding-top: 0;
     margin: 0 auto;
   }
   .create-form mat-form-field {
