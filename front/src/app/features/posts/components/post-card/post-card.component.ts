@@ -14,6 +14,6 @@ export class PostCardComponent {
   }
 
   onPostDetail() {
-    this.router.navigateByUrl(`posts/${this.post.id}`);
+    this.router.navigateByUrl(`posts/detail/${this.post.id}`);
   }
 }

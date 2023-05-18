@@ -27,6 +27,8 @@ public abstract class PostMapper {
             "java(post.getSubject() != null ? post.getSubject().getId() : null)")
     @Mapping(target = "authorId", expression =
             "java(post.getAuthor() != null ? post.getAuthor().getId() : null)")
+    @Mapping(target = "subject", expression =
+            "java(post.getSubject() != null ? post.getSubject().getTitle() : null)")
     public abstract PostDto toDto(Post post);
 
     @Mapping(target = "subject", expression =

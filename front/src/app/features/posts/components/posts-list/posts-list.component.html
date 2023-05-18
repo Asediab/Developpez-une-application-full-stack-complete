@@ -9,16 +9,13 @@
         *ngIf="data.length"
         class="button-image-order"
         [attr.aria-label]="'Order by '+sortDirection+' date'"
-        (click)="orderByDAte()"
-      >
+        (click)="orderByDAte()">
         Trier par
         <img
           src="/assets/arrow-small-down.png"
           alt="Order by date"
           [style]="
-            sortDirection == 'descending' ? {} : { transform: 'rotate(180deg)' }
-          "
-        />
+            sortDirection == 'descending' ? {} : { transform: 'rotate(180deg)' }"/>
       </button>
     </div>
     <div class="list-article" *ngIf="data.length">

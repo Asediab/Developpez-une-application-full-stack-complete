@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "./features/auth/services/auth.service";
 import {Router} from "@angular/router";
 import {SessionService} from "./features/auth/services/session.service";
-import {Observable} from "rxjs";
+import {take} from "rxjs";
 import {BreakpointObserver, Breakpoints, BreakpointState} from "@angular/cdk/layout";
 import {UserInterface} from "./features/user/interfaces/user.interface";
 import {SessionInformation} from "./features/auth/interfaces/sessionInformation.interface";
@@ -25,10 +25,6 @@ export class AppComponent implements OnInit {
     private breakpointObserver: BreakpointObserver) {
   }
 
-  public $isLogged(): Observable<boolean> {
-    return this.sessionService.$isLogged();
-  }
-
   public logout(): void {
     this.sessionService.logOut();
     this.router.navigate([''])
@@ -36,15 +32,17 @@ export class AppComponent implements OnInit {
 
   public autoLog(): void {
     if (this.sessionService.getToken()) {
-      this.sessionInf.token = this.sessionService.getToken();
-      this.authService.me().subscribe(
-        (user: UserInterface) => {
-          this.sessionService.logIn(this.sessionInf);
-        },
-        (_) => {
-          this.sessionService.logOut();
-        }
-      )
+      this.sessionInf.token = <string>this.sessionService.getToken();
+      this.authService.me()
+        .pipe(take(1))
+        .subscribe({
+          next: (user: UserInterface) => {
+            this.sessionService.logIn(this.sessionInf);
+          },
+          error: (error) => {
+            this.logout();
+          },
+        });
       this.router.navigate(['/posts'])
     } else this.logout()
   }

@@ -1,11 +1,13 @@
-button.button-go-back {
+.ass-button-image {
   position: absolute;
   max-height: 23px;
   margin-top: 5px;
   margin-left: 22px;
+  background: none;
+  border: none;
 }
 
-h1 {
+.post-title {
   margin: 38px 23px 27px 84px;
   line-height: 29px;
   font-weight: 600;
@@ -13,7 +15,7 @@ h1 {
   text-transform: lowercase;
 }
 
-h1::first-letter {
+.post-title::first-letter {
   text-transform: capitalize;
 }
 
@@ -81,8 +83,10 @@ textarea {
   line-height: 24px;
 }
 
-form button.button-submit {
+button.button-submit {
   margin-left: 31px;
+  background: none;
+  border: none;
 }
 
 @media only screen and (max-width: 599.98px) {
@@ -90,7 +94,7 @@ form button.button-submit {
     top: 82px;
     margin-left: 14px;
   }
-  h1 {
+  .post-title {
     margin: 22px 19px 30px 81px;
     font-weight: 600;
     font-size: 24px;
@@ -122,19 +126,15 @@ form button.button-submit {
     min-width: 100%;
     position: relative;
   }
-  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper {
-    padding: 0;
-    margin: 0 !important;
-  }
-  form mat-form-field {
+
+  mat-form-field {
     position: relative;
     width: 100%;
   }
-  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
-    padding-right: 64px;
-  }
-  form button.button-submit {
+  button.button-submit {
     position: absolute;
     right: 16px;
+    background: none;
+    border: none;
   }
 }

@@ -5,8 +5,7 @@
   color="primary"
   [attr.aria-label]="(post.createdAt | date:'shortDate') + ' - ' + post.title"
   role="button"
-  tabindex="0"
->
+  tabindex="0">
   <mat-card-title>{{ post.title }}</mat-card-title>
   <mat-card-subtitle>
     <span class="post-date">{{ post.createdAt | date : "dd-MM-YY" }} </span>

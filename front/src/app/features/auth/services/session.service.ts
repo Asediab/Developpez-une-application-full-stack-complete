@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from "rxjs";
 import {UserInterface} from "../../user/interfaces/user.interface";
 import {AuthService} from "./auth.service";
 import {SessionInformation} from "../interfaces/sessionInformation.interface";
@@ -11,7 +10,6 @@ export class SessionService {
   private tokenKey: string = 'app-token';
   public isLogged = false;
   public authUser: UserInterface | undefined;
-  private isLoggedSubject = new BehaviorSubject<boolean>(this.isLogged);
 
   constructor(private authService: AuthService) {
   }
@@ -26,7 +24,7 @@ export class SessionService {
 
   public getToken() {
     let token = localStorage.getItem(this.tokenKey);
-    return token ? token : '';
+    return token ? token : undefined;
   }
 
   public setToken(value: string) {
@@ -35,11 +33,6 @@ export class SessionService {
 
   public clearData() {
     localStorage.clear();
-  }
-
-
-  public $isLogged(): Observable<boolean> {
-    return this.isLoggedSubject.asObservable();
   }
 
   public logIn(sessionInformation: SessionInformation): void {
@@ -53,22 +46,20 @@ export class SessionService {
   }
 
   private getMe(): void {
-    this.authService.me().subscribe((user: UserInterface) => this.authUser = user);
-    if (this.authUser != undefined) {
-      this.next();
-    } else {
-      this.logOut()
+    this.authService.me().subscribe({
+      next: (user: UserInterface) => {
+        this.authUser = user;
+        console.log(user);
+      }
+    });
+    if (this.authUser == undefined) {
+      //this.logOut();
     }
   }
 
   public logOut(): void {
-    this.clearData()
+    this.clearData();
     this.authUser = undefined;
     this.isLogged = false;
-    this.next();
-  }
-
-  private next(): void {
-    this.isLoggedSubject.next(this.isLogged);
   }
 }

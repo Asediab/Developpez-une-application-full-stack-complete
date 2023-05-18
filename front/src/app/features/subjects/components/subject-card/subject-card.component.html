@@ -17,23 +17,11 @@
       class="button-create"
       mat-raised-button
       color="primary"
-      (click)="subscription()"
-      [attr.aria-label]="
-        subject.subscription
-          ? 'Unsubscribe to ' +
-            subject.title +
-            ' - description ' +
-            subject.description
-          : 'Subscribe to ' +
-            subject.title +
-            ' - description ' +
-            subject.description
-      "
-    >
-      <ng-container *ngIf="subject.subscription; else notSubscribed">
+      (click)="subscription()">
+      <ng-container *ngIf="subject.subscription; else notSubscriptions">
         Se désabonner
       </ng-container>
-      <ng-template #notSubscribed>S'abonner</ng-template>
+      <ng-template #notSubscriptions>S'abonner</ng-template>
     </button>
   </mat-card-actions>
 </mat-card>

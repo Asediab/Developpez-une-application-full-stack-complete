@@ -21,7 +21,6 @@ public class PostDto {
     @Size(max = 5000)
     @NotBlank
     private String description;
-    @NotNull
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     @NotNull
@@ -30,5 +29,6 @@ public class PostDto {
     private String authorFirstName;
     @NotNull
     private Long subjectId;
+    private String subject;
     List<MessageDto> messages;
 }

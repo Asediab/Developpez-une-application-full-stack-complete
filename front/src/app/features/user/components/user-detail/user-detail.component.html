@@ -12,7 +12,7 @@
       floatLabel="always"
     >
       <mat-label class="custom-label">Nom d'utilisateur</mat-label>
-      <input matInput formControlName="username"/>
+      <input matInput formControlName="firstName"/>
     </mat-form-field>
     <mat-form-field
       class="input-first"
@@ -68,7 +68,7 @@
       </div>
     </div>
     <div class="list-subject" *ngIf="!subjects.length">
-      <p>No subjects to subscribe</p>
+      <p>No subscribed subjects</p>
     </div>
   </ng-container>
   <ng-template #loading>

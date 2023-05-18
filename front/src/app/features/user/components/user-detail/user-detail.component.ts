@@ -1,14 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {take} from "rxjs";
-import {UserInterface} from "../../interfaces/user.interface";
+import {UserInterface, UserUpdate} from "../../interfaces/user.interface";
 import {SubjectInterface} from "../../../subjects/interfaces/subject.interface";
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../services/user.service";
 import {BreakpointObserver, Breakpoints, BreakpointState} from "@angular/cdk/layout";
 import {SessionService} from "../../../auth/services/session.service";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {RegisterRequest} from "../../../auth/interfaces/registerRequest";
 import {SessionInformation} from "../../../auth/interfaces/sessionInformation.interface";
 import {SubscriptionService} from "../../services/subscription.service";
 import {SubscriptionInterface} from "../../interfaces/subscription.interface";
@@ -23,26 +22,9 @@ export class UserDetailComponent implements OnInit {
   isDesktop!: boolean;
   subjects!: SubjectInterface[] | undefined;
   user!: UserInterface | undefined;
+  public form: FormGroup;
   public hide = true;
   private REGEX: RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}$/;
-  public form = this.fb.group({
-    firstName: [
-      '',
-      [
-        Validators.required,
-        Validators.min(3),
-        Validators.max(20)
-      ]
-    ],
-    email: ['', [Validators.required, Validators.email]],
-    password: [
-      '',
-      [
-        Validators.required,
-        Validators.pattern(this.REGEX)
-      ]
-    ]
-  });
 
   constructor(
     private userService: UserService,
@@ -56,6 +38,9 @@ export class UserDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.update();
+    //this.user = this.sessionService.authUser;
+    this.initForm();
     this.breakpointObserver
       .observe([Breakpoints.XSmall])
       .subscribe((result: BreakpointState) => {
@@ -65,8 +50,7 @@ export class UserDetailComponent implements OnInit {
           this.isDesktop = true;
         }
       });
-    this.update();
-    this.user = this.sessionService.authUser;
+
     this.form.setValue({
       // @ts-ignore
       firstName: this.user.firstName,
@@ -77,7 +61,10 @@ export class UserDetailComponent implements OnInit {
   }
 
   public submit(): void {
-    const registerRequest = this.form.value as RegisterRequest;
+    const registerRequest = this.form.value as UserUpdate;
+    registerRequest.id = <number>this.user?.id;
+    registerRequest.subjects = this.user?.subjects;
+    registerRequest.createdAt = <Date>this.user?.createdAt;
     this.userService
       .updateUser(registerRequest)
       .pipe(take(1))
@@ -107,6 +94,27 @@ export class UserDetailComponent implements OnInit {
       });
   }
 
+  private initForm(): void {
+    this.form = this.fb.group({
+      firstName: [
+        '',
+        [
+          Validators.required,
+          Validators.min(3),
+          Validators.max(20)
+        ]
+      ],
+      email: ['', [Validators.required, Validators.email]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(this.REGEX)
+        ]
+      ]
+    });
+  }
+
   public logOut() {
     this.sessionService.clearData();
     this.router.navigate(['/']);
@@ -122,6 +130,15 @@ export class UserDetailComponent implements OnInit {
 
   private update() {
     this.sessionService.updateUser();
-    this.subjects = this.user?.subjects;
+    this.user = this.sessionService.authUser;
+    this.subjects = this.makeUserSubjectsSubscribeTrue(this.user?.subjects);
+  }
+
+  private makeUserSubjectsSubscribeTrue(subjects: SubjectInterface[] | undefined): SubjectInterface[] {
+    // @ts-ignore
+    return subjects.map((value: SubjectInterface) => {
+      value.subscription = true;
+      return value;
+    });
   }
 }

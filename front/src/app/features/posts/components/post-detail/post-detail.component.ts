@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PostInterface} from "../../interfaces/post.interface";
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PostsService} from "../../services/posts.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -19,11 +19,8 @@ import {UserInterface} from "../../../user/interfaces/user.interface";
 export class PostDetailComponent implements OnInit {
   user: UserInterface | undefined;
   post!: PostInterface;
+  public form: FormGroup;
   public onError = false;
-
-  public form = this.fb.group({
-    message: ['', [Validators.required, Validators.minLength(3)]],
-  });
 
   constructor(
     private route: ActivatedRoute,
@@ -38,6 +35,10 @@ export class PostDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      message: ['', [Validators.required, Validators.minLength(3)]],
+    });
+
     this.user = this.sessionService.authUser;
     this.update();
   }

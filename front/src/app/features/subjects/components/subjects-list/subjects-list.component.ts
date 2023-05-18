@@ -17,6 +17,7 @@ import {SubjectInterface} from "../../interfaces/subject.interface";
 export class SubjectsListComponent implements OnInit {
   isDesktop!: boolean;
   public onError: boolean = false;
+  userSubjects!: SubjectInterface[] | undefined;
   subjects!: SubjectInterface[] | undefined;
   user!: UserInterface | undefined;
 
@@ -30,18 +31,19 @@ export class SubjectsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = this.sessionService.authUser;
+    this.update();
     this.breakpointObserver
       .observe([Breakpoints.XSmall])
       .subscribe((result: BreakpointState) => {
         this.isDesktop = !result.matches;
       });
-    this.update();
   }
 
   update() {
     this.sessionService.updateUser();
-    this.subjects = this.user?.subjects;
+    this.user = this.sessionService.authUser;
+    this.userSubjects = this.user?.subjects;
+    this.initSubjects();
   }
 
   subscription(id: number) {
@@ -51,7 +53,6 @@ export class SubjectsListComponent implements OnInit {
       .pipe(take(1))
       .subscribe({
         next: (response) => {
-          this.update();
           this.matSnackBar.open('Subscribed', '', {
             duration: 3000,
           });
@@ -59,5 +60,42 @@ export class SubjectsListComponent implements OnInit {
         },
         error: error => this.onError = true,
       });
+    this.update();
+  }
+
+  private initSubjects(): void {
+    let userSubject: SubjectInterface[] = this.makeUserSubjectsSubscribeTrue(this.userSubjects)
+    let allSubjects: SubjectInterface[];
+    this.subjectService.getAllSubjects().subscribe({
+      next: (value) => {
+        allSubjects = value;
+        this.subjects = this.uniqueObjectArray(userSubject, allSubjects);
+      }
+    });
+
+  }
+
+  private makeUserSubjectsSubscribeTrue(subjects: SubjectInterface[] | undefined): SubjectInterface[] {
+    // @ts-ignore
+    return subjects.map((value: SubjectInterface) => {
+      value.subscription = true;
+      return value;
+    });
+  }
+
+  private uniqueObjectArray(baseArray: SubjectInterface[], mergeArray: SubjectInterface[]) {
+    // we can't compare unique objects within an array ~es6...
+    // ...e.g. concat/destructure/Set()
+    // so we'll create a mapping of: item.id* for each -> item
+    const uniqueMap = new Map();
+    const uniqueArray: SubjectInterface[] = [];
+
+    // hash array items by id*
+    baseArray.forEach(item => !uniqueMap.has(item.id) && uniqueMap.set(item.id, item))
+    mergeArray.forEach(item => !uniqueMap.has(item.id) && uniqueMap.set(item.id, item))
+
+    // hash -> array
+    uniqueMap.forEach(item => uniqueArray.push(item))
+    return uniqueArray
   }
 }

@@ -1,16 +1,16 @@
-.container-comment {
+.container {
   width: 69.34%;
   margin: 0 auto 43px auto;
   display: flex;
   column-gap: 16px;
 }
 
-.comment-username {
+.username {
   flex-basis: 25%;
   min-width: 25%;
 }
 
-.container-comment-content {
+.container-content {
   box-sizing: border-box;
   flex-basis: 75%;
   background-color: #eee;
@@ -18,8 +18,8 @@
   padding: 17px 29px 20px 21px;
 }
 
-.comment-username,
-.comment-content {
+.username,
+.content {
   font-size: 20px;
   line-height: 24px;
   margin: 0;
@@ -28,18 +28,18 @@
 }
 
 @media only screen and (max-width: 599.98px) {
-  .container-comment {
+  .container {
     flex-direction: column-reverse;
     align-items: flex-end;
     width: 100%;
     margin-bottom: 57px;
   }
-  .comment-username {
+  .username {
     flex-basis: 50%;
     max-width: 50%;
     margin-right: 19px;
   }
-  .container-comment-content {
+  .container-content {
     flex-basis: 100%;
     min-width: 100%;
     background-color: inherit;
@@ -48,11 +48,11 @@
 }
 
 @media only screen and (min-width: 1200px) {
-  .comment-username {
+  .username {
     flex-basis: 250px;
     min-width: auto;
   }
-  .container-comment-content {
+  .container-content {
     flex-basis: 100%;
   }
 }

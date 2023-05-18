@@ -1,13 +1,13 @@
-<ng-container *ngIf="post; else loadingComments">
-  <section>
+<ng-container *ngIf="post; else loading">
+  <div>
     <button
-      class="yl-button-image-accessibility button-go-back"
+      class="ass-button-image"
       aria-label="Return to previous page"
       (click)="return()"
     >
       <img src="/assets/arrow_left.png" alt="Return"/>
     </button>
-    <h1>{{ post.title | uppercase }}</h1>
+    <h1 class="post-title">{{ post.title | uppercase }}</h1>
     <p class="subtitle">
       <span>{{ post.createdAt | date : "d MMMM yyyy" }}</span>
       <span>{{ post.authorFirstName }}</span>
@@ -36,19 +36,19 @@
         ></textarea>
       </mat-form-field>
       <button
-        class="yl-button-image-accessibility button-submit"
+        class="button-submit"
         aria-label="Send comment"
         type="submit"
         [disabled]="form.invalid"
       >
-        <img src="./assets/send.png"
+        <img src="./assets/send_.png"
              [alt]="form.invalid ? 'Type a comment to send it' : 'Send comment'"
         />
       </button>
       <p *ngIf="onError" class="error">An error occurred</p>
     </form>
-  </section>
+  </div>
 </ng-container>
-<ng-template #loadingComments>
+<ng-template #loading>
   <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 </ng-template>

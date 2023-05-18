@@ -5,10 +5,10 @@ button {
   align-items: flex-start;
   border-radius: 8px;
   border: none;
-  width: 22.37rem;
-  height: 11.25rem;
+  width: 23rem;
+  height: 12rem;
   text-align: left;
-  padding: 12px 20px 14px 18px;
+  padding: 15px 20px 15px 20px;
 }
 
 button mat-card-title {
@@ -19,10 +19,6 @@ button mat-card-title {
   white-space: nowrap;
   height: 2.19rem;
   width: 100%;
-}
-
-button mat-card-title::first-letter {
-  text-transform: capitalize;
 }
 
 button mat-card-subtitle {
@@ -37,14 +33,7 @@ button mat-card-subtitle {
 
 button mat-card-content {
   overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;
   white-space: pre-wrap;
-}
-
-button mat-card-content p {
-  margin: 0;
 }
 
 button mat-card-subtitle span.post-date {
@@ -54,21 +43,9 @@ button mat-card-subtitle span.post-date {
 
 @media only screen and (max-width: 599.98px) {
   button {
-    max-width: 16.56rem;
-    height: 8.25rem;
+    max-width: 55rem;
+    height: 10rem;
     text-align: left;
-    padding: 8px 15px 10px 13px;
-  }
-  button mat-card-title {
-    height: 1.6rem;
-  }
-  button mat-card-subtitle {
-    height: 1.5rem;
-  }
-  button mat-card-subtitle span.post-date {
-    width: 42%;
-  }
-  button mat-card-content {
-    -webkit-line-clamp: 4;
+    padding: 10px 15px 10px 15px;
   }
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SubjectInterface} from "../../../subjects/interfaces/subject.interface";
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {PostInterface} from "../../interfaces/post.interface";
 import {SubjectsService} from "../../../subjects/services/subjects.service";
 import {PostsService} from "../../services/posts.service";
@@ -9,6 +9,7 @@ import {Location} from '@angular/common';
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {take} from "rxjs";
 import {UserInterface} from "../../../user/interfaces/user.interface";
+import {SessionService} from "../../../auth/services/session.service";
 
 @Component({
   selector: 'app-post-create',
@@ -19,21 +20,12 @@ export class PostCreateComponent implements OnInit {
   subjects!: SubjectInterface[];
   user: UserInterface | undefined;
   public onError = false;
+  public form: FormGroup;
   private REGEX_ID: RegExp = /^[1-9][0-9]*$/;
 
-  public form = this.fb.group({
-    subjectId: [
-      0,
-      [Validators.required, Validators.pattern(this.REGEX_ID)],
-    ],
-    title: ['', [Validators.required, Validators.min(5), Validators.max(100)]],
-    description: [
-      '',
-      [Validators.required, Validators.min(20)],
-    ],
-  });
 
   constructor(
+    private sessionService: SessionService,
     private subjectsService: SubjectsService,
     private postsService: PostsService,
     private fb: FormBuilder,
@@ -52,6 +44,8 @@ export class PostCreateComponent implements OnInit {
 
   public submit(): void {
     const postRequest = this.form.value as PostInterface;
+    postRequest.authorId = <number>this.sessionService.authUser?.id;
+    postRequest.authorFirstName = <string>this.sessionService.authUser?.firstName;
     this.postsService
       .createPost(postRequest)
       .pipe(take(1))
@@ -68,6 +62,7 @@ export class PostCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initForm();
     this.subjectsService.getAllSubjects().subscribe({
         next: (value: SubjectInterface[]) => {
           this.subjects = value;
@@ -76,6 +71,20 @@ export class PostCreateComponent implements OnInit {
         }
       }
     );
+  }
+
+  private initForm(): void {
+    this.form = this.fb.group({
+      subjectId: [
+        0,
+        [Validators.required, Validators.pattern(this.REGEX_ID)],
+      ],
+      title: ['', [Validators.required, Validators.min(5), Validators.max(100)]],
+      description: [
+        '',
+        [Validators.required, Validators.min(20)],
+      ],
+    });
   }
 
   return() {

@@ -29,7 +29,6 @@ public class UserUpdateDto {
     @NotBlank
     @Size(max = 120)
     private String password;
-    @NotNull
     private Set<SubjectDto> subjects = new HashSet<>();
     @NotNull
     private LocalDateTime createdAt;
