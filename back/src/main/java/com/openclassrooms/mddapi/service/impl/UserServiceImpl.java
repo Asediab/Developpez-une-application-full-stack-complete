@@ -75,6 +75,7 @@ public class UserServiceImpl implements UserService {
             newUser.setFirstName(user.getFirstName());
             String passWord = encoder.encode(user.getPassword());
             newUser.setPassword(passWord);
+            newUser.setSubjects(user.getSubjects());
             newUser.setCreatedAt(user.getCreatedAt());
             newUser.setUpdatedAt(LocalDateTime.now());
             this.userRepository.save(newUser);

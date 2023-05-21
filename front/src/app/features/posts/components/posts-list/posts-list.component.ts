@@ -5,6 +5,7 @@ import {UserInterface} from "../../../user/interfaces/user.interface";
 import {SessionService} from "../../../auth/services/session.service";
 import {PostInterface} from "../../interfaces/post.interface";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {take} from "rxjs";
 
 @Component({
   selector: 'app-posts-list',
@@ -26,14 +27,16 @@ export class PostsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.postsService.getAllPostsByUser().subscribe({
-      next: (value: PostInterface[]) => {
-        this.posts = value;
-      },
-      error: err => this.matSnackBar.open(err, '', {
-        duration: 3000,
-      })
-    });
+    this.postsService.getAllPostsByUser()
+      .pipe(take(1))
+      .subscribe({
+        next: (value: PostInterface[]) => {
+          this.posts = value;
+        },
+        error: err => this.matSnackBar.open(err, '', {
+          duration: 3000,
+        })
+      });
   }
 
 

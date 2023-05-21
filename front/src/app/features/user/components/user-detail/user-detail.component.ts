@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {take} from "rxjs";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Subscription, take} from "rxjs";
 import {UserInterface, UserUpdate} from "../../interfaces/user.interface";
 import {SubjectInterface} from "../../../subjects/interfaces/subject.interface";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -17,13 +17,14 @@ import {SubscriptionInterface} from "../../interfaces/subscription.interface";
   templateUrl: './user-detail.component.html',
   styleUrls: ['./user-detail.component.scss']
 })
-export class UserDetailComponent implements OnInit {
+export class UserDetailComponent implements OnInit, OnDestroy {
   public onError = false;
   isDesktop!: boolean;
   subjects!: SubjectInterface[] | undefined;
-  user!: UserInterface | undefined;
+  user: UserInterface | undefined;
   public form: FormGroup;
   public hide = true;
+  private sub: Subscription;
   private REGEX: RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}$/;
 
   constructor(
@@ -37,11 +38,14 @@ export class UserDetailComponent implements OnInit {
   ) {
   }
 
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+
   ngOnInit(): void {
     this.update();
-    //this.user = this.sessionService.authUser;
     this.initForm();
-    this.breakpointObserver
+    this.sub = this.breakpointObserver
       .observe([Breakpoints.XSmall])
       .subscribe((result: BreakpointState) => {
         if (result.matches) {
@@ -65,6 +69,7 @@ export class UserDetailComponent implements OnInit {
     registerRequest.id = <number>this.user?.id;
     registerRequest.subjects = this.user?.subjects;
     registerRequest.createdAt = <Date>this.user?.createdAt;
+    console.log(registerRequest);
     this.userService
       .updateUser(registerRequest)
       .pipe(take(1))

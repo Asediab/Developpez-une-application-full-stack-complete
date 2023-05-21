@@ -4,6 +4,7 @@ import {NotFoundComponent} from "./shared-modules/not-found/not-found.component"
 import {LandingComponent} from "./shared-modules/landing/landing.component";
 import {RegisterComponent} from "./features/auth/components/register/register.component";
 import {LoginComponent} from "./features/auth/components/login/login.component";
+import {AuthGuard} from "./guards/auth.guard";
 
 // consider a guard combined with canLoad / canActivate route option
 // to manage unauthenticated user to access private routes
@@ -15,16 +16,19 @@ const routes: Routes = [
   },
   {
     path: 'posts',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./features/posts/posts.module').then((m) => m.PostsModule),
   },
   {
     path: 'subjects',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./features/subjects/subjects.module').then((m) => m.SubjectsModule),
   },
   {
     path: 'me',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./features/user/user.module').then((m) => m.UserModule),
   },

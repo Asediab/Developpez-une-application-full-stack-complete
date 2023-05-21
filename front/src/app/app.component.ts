@@ -1,22 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from "./features/auth/services/auth.service";
 import {Router} from "@angular/router";
 import {SessionService} from "./features/auth/services/session.service";
-import {take} from "rxjs";
+import {Subscription} from "rxjs";
 import {BreakpointObserver, Breakpoints, BreakpointState} from "@angular/cdk/layout";
-import {UserInterface} from "./features/user/interfaces/user.interface";
-import {SessionInformation} from "./features/auth/interfaces/sessionInformation.interface";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   isDesktop!: boolean;
-  private sessionInf: SessionInformation = {
-    lastname: "", mail: "", token: "", type: ""
-  };
+  private sub: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -25,31 +21,16 @@ export class AppComponent implements OnInit {
     private breakpointObserver: BreakpointObserver) {
   }
 
-  public logout(): void {
-    this.sessionService.logOut();
-    this.router.navigate([''])
-  }
-
   public autoLog(): void {
     if (this.sessionService.getToken()) {
-      this.sessionInf.token = <string>this.sessionService.getToken();
-      this.authService.me()
-        .pipe(take(1))
-        .subscribe({
-          next: (user: UserInterface) => {
-            this.sessionService.logIn(this.sessionInf);
-          },
-          error: (error) => {
-            this.logout();
-          },
-        });
+      this.sessionService.updateUser()
       this.router.navigate(['/posts'])
-    } else this.logout()
+    } else this.sessionService.logOut();
   }
 
 
   ngOnInit() {
-    this.breakpointObserver
+    this.sub = this.breakpointObserver
       .observe([Breakpoints.XSmall])
       .subscribe((result: BreakpointState) => {
         this.isDesktop = !result.matches;
@@ -64,5 +45,9 @@ export class AppComponent implements OnInit {
       ||
       (!this.isDesktop && currentUrl === '/login') ||
       (!this.isDesktop && currentUrl === '/register'));
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }

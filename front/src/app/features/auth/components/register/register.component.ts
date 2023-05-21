@@ -6,6 +6,7 @@ import {Location} from '@angular/common';
 import {RegisterRequest} from "../../interfaces/registerRequest";
 import {SessionService} from "../../services/session.service";
 import {SessionInformation} from "../../interfaces/sessionInformation.interface";
+import {take} from "rxjs";
 
 @Component({
   selector: 'app-register',
@@ -55,13 +56,15 @@ export class RegisterComponent implements OnInit {
 
   public submit(): void {
     const registerRequest = this.form.value as RegisterRequest;
-    this.authService.register(registerRequest).subscribe({
-      next: (response: SessionInformation) => {
-        this.sessionService.logIn(response);
-        this.router.navigate(['/posts']);
-      },
-      error: error => this.onError = true,
-    });
+    this.authService.register(registerRequest)
+      .pipe(take(1))
+      .subscribe({
+        next: (response: SessionInformation) => {
+          this.sessionService.logIn(response);
+          this.router.navigate(['/posts']);
+        },
+        error: error => this.onError = true,
+      });
   }
 
   public return() {

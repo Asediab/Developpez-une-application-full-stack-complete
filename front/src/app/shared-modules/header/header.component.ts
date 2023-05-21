@@ -1,16 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {BreakpointObserver, Breakpoints, BreakpointState} from "@angular/cdk/layout";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {SessionService} from "../../features/auth/services/session.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   isDesktop!: boolean;
+  private sub: Subscription;
 
   constructor(
     private router: Router,
@@ -32,7 +34,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.breakpointObserver
+    this.sub = this.breakpointObserver
       .observe([Breakpoints.XSmall])
       .subscribe((result: BreakpointState) => {
         this.isDesktop = !result.matches;
@@ -43,8 +45,12 @@ export class HeaderComponent implements OnInit {
     const currentUrl = this.router.url;
     return !(currentUrl === '/login' ||
       currentUrl === '/register' ||
-      (currentUrl === '/404' && !this.sessionService.isLogged));
+      (currentUrl === '/404' && !this.sessionService.getToken()));
 
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }
 

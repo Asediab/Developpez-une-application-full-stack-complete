@@ -6,6 +6,7 @@ import {LoginRequest} from "../../interfaces/loginRequest";
 import {SessionInformation} from "../../interfaces/sessionInformation.interface";
 import {Location} from '@angular/common';
 import {AuthService} from "../../services/auth.service";
+import {take} from "rxjs";
 
 @Component({
   selector: 'app-login',
@@ -47,14 +48,15 @@ export class LoginComponent implements OnInit {
 
   public submit(): void {
     const loginRequest = this.form.value as LoginRequest;
-    this.authService.login(loginRequest).subscribe({
-      next: (response: SessionInformation) => {
-        this.sessionService.logIn(response);
-        // TODO navigate and AuthService
-        this.router.navigate(['/posts']);
-      },
-      error: error => this.onError = true,
-    });
+    this.authService.login(loginRequest)
+      .pipe(take(1))
+      .subscribe({
+        next: (response: SessionInformation) => {
+          this.sessionService.logIn(response);
+          this.router.navigate(['/posts']);
+        },
+        error: error => this.onError = true,
+      });
   }
 
   public return() {

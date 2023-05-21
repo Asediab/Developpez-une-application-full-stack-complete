@@ -52,15 +52,17 @@ export class PostDetailComponent implements OnInit {
 
   update() {
     const postId = +this.route.snapshot.params['id'];
-    this.postsService.findById(postId).subscribe({
-        next: (value: PostInterface) => {
-          this.post = value;
-        },
-        error: err => {
-          this.router.navigate(['/404']);
+    this.postsService.findById(postId)
+      .pipe(take(1))
+      .subscribe({
+          next: (value: PostInterface) => {
+            this.post = value;
+          },
+          error: err => {
+            this.router.navigate(['/404']);
+          }
         }
-      }
-    );
+      );
   }
 
   public submit(): void {

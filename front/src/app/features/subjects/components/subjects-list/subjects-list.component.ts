@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SubjectsService} from "../../services/subjects.service";
 import {BreakpointObserver, Breakpoints, BreakpointState} from "@angular/cdk/layout";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {take} from "rxjs";
+import {Subscription, take} from "rxjs";
 import {SubscriptionInterface} from "../../../user/interfaces/subscription.interface";
 import {UserInterface} from "../../../user/interfaces/user.interface";
 import {SessionService} from "../../../auth/services/session.service";
@@ -14,12 +14,13 @@ import {SubjectInterface} from "../../interfaces/subject.interface";
   templateUrl: './subjects-list.component.html',
   styleUrls: ['./subjects-list.component.scss']
 })
-export class SubjectsListComponent implements OnInit {
+export class SubjectsListComponent implements OnInit, OnDestroy {
   isDesktop!: boolean;
   public onError: boolean = false;
   userSubjects!: SubjectInterface[] | undefined;
   subjects!: SubjectInterface[] | undefined;
   user!: UserInterface | undefined;
+  private sub: Subscription;
 
   constructor(
     private subjectService: SubjectsService,
@@ -32,7 +33,7 @@ export class SubjectsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.update();
-    this.breakpointObserver
+    this.sub = this.breakpointObserver
       .observe([Breakpoints.XSmall])
       .subscribe((result: BreakpointState) => {
         this.isDesktop = !result.matches;
@@ -66,12 +67,14 @@ export class SubjectsListComponent implements OnInit {
   private initSubjects(): void {
     let userSubject: SubjectInterface[] = this.makeUserSubjectsSubscribeTrue(this.userSubjects)
     let allSubjects: SubjectInterface[];
-    this.subjectService.getAllSubjects().subscribe({
-      next: (value) => {
-        allSubjects = value;
-        this.subjects = this.uniqueObjectArray(userSubject, allSubjects);
-      }
-    });
+    this.subjectService.getAllSubjects()
+      .pipe(take(1))
+      .subscribe({
+        next: (value) => {
+          allSubjects = value;
+          this.subjects = this.uniqueObjectArray(userSubject, allSubjects);
+        }
+      });
 
   }
 
@@ -97,5 +100,9 @@ export class SubjectsListComponent implements OnInit {
     // hash -> array
     uniqueMap.forEach(item => uniqueArray.push(item))
     return uniqueArray
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }

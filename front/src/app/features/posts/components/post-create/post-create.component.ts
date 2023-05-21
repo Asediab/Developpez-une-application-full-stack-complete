@@ -63,14 +63,16 @@ export class PostCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.subjectsService.getAllSubjects().subscribe({
-        next: (value: SubjectInterface[]) => {
-          this.subjects = value;
-        },
-        error: err => {
+    this.subjectsService.getAllSubjects()
+      .pipe(take(1))
+      .subscribe({
+          next: (value: SubjectInterface[]) => {
+            this.subjects = value;
+          },
+          error: err => {
+          }
         }
-      }
-    );
+      );
   }
 
   private initForm(): void {
