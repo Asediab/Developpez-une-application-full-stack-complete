@@ -17,6 +17,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
     @Override
+    @Transactional
     public void subscribe(Subscription subscription) {
         if (!subscribeExistence(subscription)) {
             this.subscriptionRepository.save(subscription);

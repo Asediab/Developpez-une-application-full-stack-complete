@@ -40,7 +40,7 @@ export class SubjectsListComponent implements OnInit, OnDestroy {
       });
   }
 
-  update() {
+  private update() {
     this.sessionService.updateUser();
     this.user = this.sessionService.authUser;
     this.userSubjects = this.user?.subjects;
@@ -59,7 +59,9 @@ export class SubjectsListComponent implements OnInit, OnDestroy {
           });
           return response;
         },
-        error: error => this.onError = true,
+        error: error => this.matSnackBar.open('Server error or subscription exists', '', {
+          duration: 3000,
+        })
       });
     this.update();
   }

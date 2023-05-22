@@ -76,11 +76,9 @@ export class UserDetailComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (response: SessionInformation) => {
           this.sessionService.setToken(response.token);
-          const msg =
-            'Your data have been updated';
-          this.showNotification(msg, 7000);
+          this.showNotification('Your data have been updated', 7000);
         },
-        error: error => this.onError = true,
+        error: error => this.showNotification('Server side error', 3000)
       });
   }
 
@@ -95,7 +93,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
           this.showNotification('Unsubscribed', 3000);
           return response;
         },
-        error: error => this.onError = true,
+        error: error => this.showNotification('Server side error or a subscription doesn\'t exist', 3000)
       });
   }
 
@@ -136,6 +134,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   private update() {
     this.sessionService.updateUser();
     this.user = this.sessionService.authUser;
+    console.log(this.user)
     this.subjects = this.makeUserSubjectsSubscribeTrue(this.user?.subjects);
   }
 

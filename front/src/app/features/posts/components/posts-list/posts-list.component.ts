@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PostsService} from "../../services/posts.service";
 import {Router} from "@angular/router";
-import {UserInterface} from "../../../user/interfaces/user.interface";
-import {SessionService} from "../../../auth/services/session.service";
 import {PostInterface} from "../../interfaces/post.interface";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {take} from "rxjs";
@@ -14,13 +12,11 @@ import {take} from "rxjs";
 })
 export class PostsListComponent implements OnInit {
   posts!: PostInterface[];
-  user!: UserInterface | undefined;
   error: boolean = false;
   sortDirection: 'ascending' | 'descending' = 'ascending';
 
   constructor(
     private postsService: PostsService,
-    private sessionService: SessionService,
     private router: Router,
     private matSnackBar: MatSnackBar
   ) {
@@ -33,7 +29,7 @@ export class PostsListComponent implements OnInit {
         next: (value: PostInterface[]) => {
           this.posts = value;
         },
-        error: err => this.matSnackBar.open(err, '', {
+        error: err => this.matSnackBar.open('Posts list is empty', '', {
           duration: 3000,
         })
       });

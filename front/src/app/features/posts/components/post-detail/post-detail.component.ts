@@ -78,12 +78,12 @@ export class PostDetailComponent implements OnInit {
       .pipe(take(1))
       .subscribe({
         next: (response: MessageInterface) => {
-          const msg = 'Your comment has been published';
           this.update();
-          this.showNotification(msg, 2000);
+          this.showNotification('Your comment has been published', 2000);
           return response;
         },
         error: (error) => {
+          this.showNotification('Server error, please try again', 2000);
         },
       });
   }

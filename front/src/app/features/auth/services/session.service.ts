@@ -55,7 +55,6 @@ export class SessionService implements OnDestroy {
       .subscribe({
         next: (user: UserInterface) => {
           this.authUser = user;
-          console.log(user);
         },
         error: err => this.logOut()
       });

@@ -8,8 +8,8 @@ import {Router} from "@angular/router";
 import {Location} from '@angular/common';
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {take} from "rxjs";
-import {UserInterface} from "../../../user/interfaces/user.interface";
 import {SessionService} from "../../../auth/services/session.service";
+import {AuthService} from "../../../auth/services/auth.service";
 
 @Component({
   selector: 'app-post-create',
@@ -18,13 +18,13 @@ import {SessionService} from "../../../auth/services/session.service";
 })
 export class PostCreateComponent implements OnInit {
   subjects!: SubjectInterface[];
-  user: UserInterface | undefined;
   public onError = false;
   public form: FormGroup;
   private REGEX_ID: RegExp = /^[1-9][0-9]*$/;
 
 
   constructor(
+    private authService: AuthService,
     private sessionService: SessionService,
     private subjectsService: SubjectsService,
     private postsService: PostsService,
@@ -56,7 +56,7 @@ export class PostCreateComponent implements OnInit {
           this.router.navigate(['posts']);
         },
         error: (error) => {
-
+          this.showNotification('Server error, please try again', 2000);
         },
       });
   }
@@ -70,6 +70,7 @@ export class PostCreateComponent implements OnInit {
             this.subjects = value;
           },
           error: err => {
+            this.showNotification('Subject list is empty', 2000);
           }
         }
       );
