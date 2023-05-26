@@ -1,8 +1,8 @@
 import {Injectable, OnDestroy} from '@angular/core';
-import {UserInterface} from "../../user/interfaces/user.interface";
-import {AuthService} from "./auth.service";
-import {SessionInformation} from "../interfaces/sessionInformation.interface";
-import {Subscription, take} from "rxjs";
+import {UserInterface} from "../features/user/interfaces/user.interface";
+import {AuthService} from "../features/auth/services/auth.service";
+import {SessionInformation} from "../features/auth/interfaces/sessionInformation.interface";
+import {Observable, Subscription, take} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,7 @@ import {Subscription, take} from "rxjs";
 export class SessionService implements OnDestroy {
   private tokenKey: string = 'app-token';
   public authUser: UserInterface | undefined;
+  public user$: Observable<UserInterface>;
   private subs: Subscription;
 
   constructor(private authService: AuthService) {
@@ -50,6 +51,7 @@ export class SessionService implements OnDestroy {
   }
 
   private getMe(): void {
+    this.user$ = this.authService.me();
     this.subs = this.authService.me()
       .pipe(take(1))
       .subscribe({

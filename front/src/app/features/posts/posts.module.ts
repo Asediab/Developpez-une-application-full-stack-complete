@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {PostCardComponent} from './components/post-card/post-card.component';
 import {PostsListComponent} from './components/posts-list/posts-list.component';
 import {PostDetailComponent} from './components/post-detail/post-detail.component';
@@ -34,7 +34,8 @@ import {MatSelectModule} from "@angular/material/select";
     MatListModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    NgOptimizedImage
   ],
   exports: [
     PostCardComponent,

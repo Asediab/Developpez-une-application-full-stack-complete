@@ -4,7 +4,7 @@ import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {Location} from '@angular/common';
 import {RegisterRequest} from "../../interfaces/registerRequest";
-import {SessionService} from "../../services/session.service";
+import {SessionService} from "../../../../service/session.service";
 import {SessionInformation} from "../../interfaces/sessionInformation.interface";
 import {take} from "rxjs";
 

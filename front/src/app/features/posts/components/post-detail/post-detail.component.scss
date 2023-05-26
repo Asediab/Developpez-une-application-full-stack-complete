@@ -7,7 +7,7 @@
   border: none;
 }
 
-.post-title {
+.title {
   margin: 38px 23px 27px 84px;
   line-height: 29px;
   font-weight: 600;
@@ -15,7 +15,7 @@
   text-transform: lowercase;
 }
 
-.post-title::first-letter {
+.title::first-letter {
   text-transform: capitalize;
 }
 
@@ -37,7 +37,7 @@
   text-transform: capitalize;
 }
 
-.content {
+.description {
   margin: 0 9px 0 84px;
   padding-bottom: 27px;
   font-size: 20px;
@@ -49,19 +49,19 @@
   margin: 0 29px 30px 93px;
 }
 
-.title-comment {
+.title-messages {
   font-size: 20px;
   line-height: 24px;
   margin: 0 9px 30px 85px;
 }
 
-.no-comment {
+.void {
   margin-left: 129px;
   font-size: 20px;
   line-height: 24px;
 }
 
-form.comment-form {
+.form {
   width: 68.26%;
   min-height: 120px;
   margin-left: calc(15.87% + 40px);
@@ -83,18 +83,18 @@ textarea {
   line-height: 24px;
 }
 
-button.button-submit {
+button.submit {
   margin-left: 31px;
   background: none;
   border: none;
 }
 
 @media only screen and (max-width: 599.98px) {
-  button.button-go-back {
+  .ass-button-image {
     top: 82px;
     margin-left: 14px;
   }
-  .post-title {
+  .title {
     margin: 22px 19px 30px 81px;
     font-weight: 600;
     font-size: 24px;
@@ -105,7 +105,7 @@ button.button-submit {
     row-gap: 13px;
     flex-wrap: wrap;
   }
-  .content {
+  .description {
     margin: 0 19px 0 14px;
     padding-bottom: 30px;
     font-size: 20px;
@@ -115,13 +115,13 @@ button.button-submit {
     border-color: black;
     margin: 0 19px 13px 14px;
   }
-  .title-comment {
+  .title-messages {
     margin: 0 19px 28px 14px;
   }
-  .no-comment {
+  .void {
     margin-left: 26px;
   }
-  form.comment-form {
+  .form {
     margin: 0 0 1px 0;
     min-width: 100%;
     position: relative;
@@ -131,7 +131,7 @@ button.button-submit {
     position: relative;
     width: 100%;
   }
-  button.button-submit {
+  button.submit {
     position: absolute;
     right: 16px;
     background: none;

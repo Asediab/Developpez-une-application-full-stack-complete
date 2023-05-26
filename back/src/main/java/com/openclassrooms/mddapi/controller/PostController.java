@@ -4,6 +4,9 @@ import com.openclassrooms.mddapi.dto.PostDto;
 import com.openclassrooms.mddapi.mapper.PostMapper;
 import com.openclassrooms.mddapi.model.Post;
 import com.openclassrooms.mddapi.service.PostService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +24,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/post")
 @Log4j2
+@Tag(name = "Post", description = "The Post API. Contains all operations " +
+        "that can be performed a Post.")
 public class PostController {
     private final PostService service;
     private final PostMapper mapper;
@@ -30,6 +35,8 @@ public class PostController {
         this.mapper = mapper;
     }
 
+    @Operation(summary = "Get all posts on the subject of which the user is subscribed")
+    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping
     public ResponseEntity<?> findAllPostsByUser() {
         List<Post> posts = this.service.getAllPostByUserSubscription();
@@ -40,6 +47,8 @@ public class PostController {
 
     }
 
+    @Operation(summary = "Get a post by his id")
+    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable("id") String id) {
         try {
@@ -53,6 +62,8 @@ public class PostController {
         }
     }
 
+    @Operation(summary = "Create a new post")
+    @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("/new")
     public ResponseEntity<?> create(@Valid @RequestBody PostDto postDto) {
         log.info(postDto);

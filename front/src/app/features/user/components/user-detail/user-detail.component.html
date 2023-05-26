@@ -2,7 +2,7 @@
   <h1>Profil utilisateur</h1>
   <form
     *ngIf="user"
-    class="login-form"
+    class="form"
     [formGroup]="form"
     (ngSubmit)="submit()"
   >
@@ -41,7 +41,7 @@
       </button>
     </mat-form-field>
     <button
-      class="button-last"
+      class="button-sub"
       mat-raised-button
       color="primary"
       type="submit"
@@ -50,14 +50,14 @@
       Sauvegarder
     </button>
     <p *ngIf="onError" class="error">An error occurred</p>
-    <button class="button-disconnect" mat-button color="warn" (click)="logOut()">
+    <button class="button-logout" mat-button color="warn" (click)="logOut()">
       Se déconnecter
     </button>
   </form>
   <mat-divider></mat-divider>
   <h2>Abonnements</h2>
   <ng-container *ngIf="subjects; else loading">
-    <div class="list-subject" *ngIf="subjects.length">
+    <div class="subjects" *ngIf="subjects.length">
       <div *ngFor="let subject of subjects">
         <app-subject-card
           (subscribe)="unSubscribe($event)"
@@ -67,7 +67,7 @@
         </app-subject-card>
       </div>
     </div>
-    <div class="list-subject" *ngIf="!subjects.length">
+    <div class="subjects" *ngIf="!subjects.length">
       <p>No subscribed subjects</p>
     </div>
   </ng-container>

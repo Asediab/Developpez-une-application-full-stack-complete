@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from "./features/auth/services/auth.service";
 import {Router} from "@angular/router";
-import {SessionService} from "./features/auth/services/session.service";
+import {SessionService} from "./service/session.service";
 import {Subscription} from "rxjs";
 import {BreakpointObserver, Breakpoints, BreakpointState} from "@angular/cdk/layout";
 

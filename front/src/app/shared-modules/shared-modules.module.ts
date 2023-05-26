@@ -8,6 +8,13 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
 import {A11yModule} from "@angular/cdk/a11y";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatDialogModule} from "@angular/material/dialog";
+import {MatCardModule} from "@angular/material/card";
+import {MatIconModule} from "@angular/material/icon";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatInputModule} from "@angular/material/input";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+import {FlexLayoutModule, FlexModule} from "@angular/flex-layout";
 
 
 @NgModule({
@@ -25,12 +32,22 @@ import {MatDialogModule} from "@angular/material/dialog";
   ],
   imports: [
     CommonModule,
-    MatButtonModule,
     RouterLink,
     RouterLinkActive,
     A11yModule,
     MatDialogModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    FlexLayoutModule,
+    FlexModule,
+    FormsModule,
   ]
 })
 export class SharedModulesModule {

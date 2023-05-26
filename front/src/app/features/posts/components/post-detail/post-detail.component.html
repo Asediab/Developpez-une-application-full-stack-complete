@@ -7,16 +7,16 @@
     >
       <img src="/assets/arrow_left.png" alt="Return"/>
     </button>
-    <h1 class="post-title">{{ post.title | uppercase }}</h1>
+    <h1 class="title">{{ post.title | uppercase }}</h1>
     <p class="subtitle">
       <span>{{ post.createdAt | date : "d MMMM yyyy" }}</span>
       <span>{{ post.authorFirstName }}</span>
       <span>{{ post.subject }}</span>
     </p>
-    <p class="content">{{ post.description }}</p>
+    <p class="description">{{ post.description }}</p>
     <mat-divider></mat-divider>
 
-    <p class="title-comment">Commentaires</p>
+    <p class="title-messages">Commentaires</p>
 
     <div *ngIf="post.messages?.length">
       <app-comments
@@ -25,18 +25,18 @@
       ></app-comments>
     </div>
     <p *ngIf="!post.messages?.length">
-      <span class="no-comment">No comment available</span>
+      <span class="void">No comment available</span>
     </p>
-    <form class="comment-form" [formGroup]="form" (ngSubmit)="submit()">
+    <form class="form" [formGroup]="form" (ngSubmit)="submit()">
       <mat-form-field class="input-first" appearance="outline">
         <textarea
           matInput
-          placeholder="Écrivez ici votre commentaire"
+          placeholder="Écrivez votre commentaire"
           formControlName="message"
         ></textarea>
       </mat-form-field>
       <button
-        class="button-submit"
+        class="submit"
         aria-label="Send comment"
         type="submit"
         [disabled]="form.invalid"

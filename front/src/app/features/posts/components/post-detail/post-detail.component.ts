@@ -8,7 +8,7 @@ import {Location} from '@angular/common';
 import {MessageInterface} from "../../interfaces/message.interface";
 import {CommentsService} from "../../services/comments.service";
 import {take} from "rxjs";
-import {SessionService} from "../../../auth/services/session.service";
+import {SessionService} from "../../../../service/session.service";
 import {UserInterface} from "../../../user/interfaces/user.interface";
 
 @Component({

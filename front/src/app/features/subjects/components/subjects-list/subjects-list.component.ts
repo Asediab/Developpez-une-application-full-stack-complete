@@ -5,9 +5,10 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {Subscription, take} from "rxjs";
 import {SubscriptionInterface} from "../../../user/interfaces/subscription.interface";
 import {UserInterface} from "../../../user/interfaces/user.interface";
-import {SessionService} from "../../../auth/services/session.service";
+import {SessionService} from "../../../../service/session.service";
 import {SubscriptionService} from "../../../user/services/subscription.service";
 import {SubjectInterface} from "../../interfaces/subject.interface";
+import {AuthService} from "../../../auth/services/auth.service";
 
 @Component({
   selector: 'app-subjects-list',
@@ -24,6 +25,7 @@ export class SubjectsListComponent implements OnInit, OnDestroy {
 
   constructor(
     private subjectService: SubjectsService,
+    private authService: AuthService,
     private subscriptionService: SubscriptionService,
     private breakpointObserver: BreakpointObserver,
     private sessionService: SessionService,
@@ -41,10 +43,18 @@ export class SubjectsListComponent implements OnInit, OnDestroy {
   }
 
   private update() {
+    this.authService.me()
+      .subscribe(
+        (user: UserInterface) => {
+          this.user = user;
+          this.subjects = this.makeUserSubjectsSubscribeTrue(this.user?.subjects);
+          this.userSubjects = this.user?.subjects;
+          this.initSubjects();
+
+        }, err => this.matSnackBar.open('Server error or subjects dont exist', '', {
+          duration: 3000,
+        }));
     this.sessionService.updateUser();
-    this.user = this.sessionService.authUser;
-    this.userSubjects = this.user?.subjects;
-    this.initSubjects();
   }
 
   subscription(id: number) {
@@ -54,6 +64,7 @@ export class SubjectsListComponent implements OnInit, OnDestroy {
       .pipe(take(1))
       .subscribe({
         next: (response) => {
+          this.update();
           this.matSnackBar.open('Subscribed', '', {
             duration: 3000,
           });
@@ -63,7 +74,6 @@ export class SubjectsListComponent implements OnInit, OnDestroy {
           duration: 3000,
         })
       });
-    this.update();
   }
 
   private initSubjects(): void {

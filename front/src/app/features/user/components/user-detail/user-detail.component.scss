@@ -15,9 +15,9 @@ h2 {
   margin: 14px 0 12px 0;
 }
 
-.list-subject {
+.subjects {
   display: flex;
-  padding: 0rem 1.19rem 0.38rem 1.19rem;
+  padding: 0 1.19rem 0.38rem 1.19rem;
   column-gap: 0.38rem;
   row-gap: 0.88rem;
   flex-wrap: wrap;
@@ -31,16 +31,12 @@ h2 {
 }
 
 
-.login-form {
+.form {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
   width: 15.6rem;
-}
-
-.button-last {
-  margin-bottom: 6px;
 }
 
 mat-form-field {
@@ -52,8 +48,9 @@ mat-form-field {
   color: black;
 }
 
-.login-form button.button-last {
+.button-sub {
   margin-top: 0.47rem;
+  margin-bottom: 6px;
   height: 40px;
   width: 139px;
 }
@@ -62,18 +59,18 @@ mat-form-field {
   margin-bottom: -3px;
 }
 
-.button-disconnect {
+.button-logout {
   line-height: 17px;
   font-weight: 700;
   font-size: 14px;
   width: 131px;
   height: 19px;
   padding: 0;
-  margin: 0 0 13px 0;
+  margin: 10px 0 13px 0;
 }
 
 @media only screen and (max-width: 599.98px) {
-  .list-subject {
+  .subjects {
     padding: 0.75rem 0.94rem 0.56rem 0.88rem;
     row-gap: 0.63rem;
     justify-content: center;
@@ -81,14 +78,14 @@ mat-form-field {
   h2 {
     display: none;
   }
-  .login-form {
+  .form {
     padding-top: 0px;
     margin: 0 auto;
   }
-  .button-last {
+  .button-sub {
     margin-bottom: 10px;
   }
-  .login-form button {
+  .form button {
     margin-top: -7.5px;
   }
 }

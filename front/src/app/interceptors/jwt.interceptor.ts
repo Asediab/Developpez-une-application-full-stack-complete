@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {SessionService} from "../features/auth/services/session.service";
+import {SessionService} from "../service/session.service";
 
 @Injectable({providedIn: 'root'})
 export class JwtInterceptor implements HttpInterceptor {

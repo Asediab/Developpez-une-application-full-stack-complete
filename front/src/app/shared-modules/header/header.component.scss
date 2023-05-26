@@ -1,7 +1,3 @@
-.active {
-  color: #6c5ccf;
-}
-
 header {
   border-bottom: 1px solid black;
 }
@@ -17,52 +13,45 @@ header img {
   cursor: pointer;
 }
 
-header button:not(:last-child),
-header button:not(:first-child) {
-  padding: 0;
-  width: 4.7em;
-}
-
 #button-user {
   margin: 0 1.375rem;
 }
 
-.menu-spacer {
+.spacer {
   flex: 1 1 auto;
 }
 
-#menu-mobile {
+#menu {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 
-#menu-mobile button:not(:last-child) {
-  padding: 0;
-  width: 4em;
-}
-
-#menu-mobile #button-user {
+#menu #button-user {
   max-width: 48px;
   margin: 0;
   position: absolute;
   bottom: 5px;
 }
 
-button.button-image {
+.button-image {
   max-height: 81px;
-  background: transparent;
-  border: transparent;
+  background: none;
+  border: none;
 }
 
-::ng-deep .app-dialog-container mat-dialog-container {
-  padding: 61px 9px 5px 0px;
-  border-radius: 0px;
+.active {
+  color: #311ed7;
+}
+
+.app-dialog-container mat-dialog-container {
+  padding: 61px 9px 5px 0;
+  border-radius: 0;
   border: 1px solid black;
 }
 
 @media only screen and (max-width: 599.98px) {
-  button.button-image {
+  .button-image {
     max-height: 53px;
   }
   header mat-toolbar {
@@ -72,10 +61,7 @@ button.button-image {
   header img {
     max-height: 53px;
   }
-  header img:last-child {
-    margin: 0;
-  }
   header button {
-    margin-right: 0px;
+    margin-right: 0;
   }
 }

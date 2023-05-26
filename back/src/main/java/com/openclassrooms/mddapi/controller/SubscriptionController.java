@@ -3,6 +3,9 @@ package com.openclassrooms.mddapi.controller;
 import com.openclassrooms.mddapi.dto.SubscriptionDto;
 import com.openclassrooms.mddapi.mapper.SubscriptionMapper;
 import com.openclassrooms.mddapi.service.SubscriptionService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/subscription")
 @Log4j2
+@Tag(name = "Subscription", description = "The Subscription API. Contains all the operations " +
+        "that can be performed a Subscription.")
 public class SubscriptionController {
     private final SubscriptionService service;
     private final SubscriptionMapper mapper;
@@ -25,6 +30,8 @@ public class SubscriptionController {
         this.mapper = mapper;
     }
 
+    @Operation(summary = "Create a new subscription on a subject")
+    @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("/sub")
     public ResponseEntity<?> subscription(@Valid @RequestBody SubscriptionDto subscriptionDto) {
         log.info(subscriptionDto);
@@ -33,6 +40,8 @@ public class SubscriptionController {
         return ResponseEntity.ok().build();
     }
 
+    @Operation(summary = "Delete a subscription on a subject")
+    @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("/unsub")
     public ResponseEntity<?> unsubscription(@Valid @RequestBody SubscriptionDto subscriptionDto) {
         log.info(subscriptionDto);

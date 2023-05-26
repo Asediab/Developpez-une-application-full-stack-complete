@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {BreakpointObserver, Breakpoints, BreakpointState} from "@angular/cdk/layout";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {SessionService} from "../../features/auth/services/session.service";
+import {SessionService} from "../../service/session.service";
 import {Subscription} from "rxjs";
 
 @Component({

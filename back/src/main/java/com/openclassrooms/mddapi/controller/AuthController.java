@@ -6,6 +6,9 @@ import com.openclassrooms.mddapi.payload.request.LoginRequest;
 import com.openclassrooms.mddapi.payload.request.SignupRequest;
 import com.openclassrooms.mddapi.payload.response.MessageResponse;
 import com.openclassrooms.mddapi.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
+@Tag(name = "Auth", description = "The Auth API. Contains all the operations " +
+        "that can be performed a Auth.")
 public class AuthController {
     private final UserService service;
     private final UserMapper mapper;
@@ -27,11 +32,13 @@ public class AuthController {
         this.mapper = mapper;
     }
 
+    @Operation(summary = "Login an user")
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         return service.createToken(loginRequest.getEmail(), loginRequest.getPassword());
     }
 
+    @Operation(summary = "Create new user")
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         if (service.userExistence(signUpRequest.getEmail())) {
@@ -44,6 +51,8 @@ public class AuthController {
         return service.createToken(signUpRequest.getEmail(), password);
     }
 
+    @Operation(summary = "Take a curent authenticated user")
+    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/me")
     public ResponseEntity<?> getMe() {
         UserDto userDTO = this.mapper.toDto(service.getCurrentUser());

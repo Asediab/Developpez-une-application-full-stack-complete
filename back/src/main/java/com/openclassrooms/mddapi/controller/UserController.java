@@ -5,6 +5,9 @@ import com.openclassrooms.mddapi.mapper.UserMapper;
 import com.openclassrooms.mddapi.mapper.UserUpdateMapper;
 import com.openclassrooms.mddapi.model.User;
 import com.openclassrooms.mddapi.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -26,6 +29,8 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/api/user")
 @Log4j2
+@Tag(name = "User", description = "The User API. Contains all the operations " +
+        "that can be performed a User.")
 public class UserController {
     private final UserService service;
     private final UserMapper mapper;
@@ -37,6 +42,8 @@ public class UserController {
         this.updateMapper = updateMapper;
     }
 
+    @Operation(summary = "Get an user by his id")
+    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable("id") String id) {
         try {
@@ -50,6 +57,8 @@ public class UserController {
         }
     }
 
+    @Operation(summary = "Delete an user by his id")
+    @SecurityRequirement(name = "Bearer Authentication")
     @DeleteMapping("{id}")
     public ResponseEntity<?> delete(@PathVariable("id") String id) {
         try {
@@ -72,6 +81,8 @@ public class UserController {
         }
     }
 
+    @Operation(summary = "Update an user")
+    @SecurityRequirement(name = "Bearer Authentication")
     @PutMapping
     public ResponseEntity<?> update(@Valid @RequestBody UserUpdateDto userUpdateDto) {
         User userOld = this.service.getById(userUpdateDto.getId());

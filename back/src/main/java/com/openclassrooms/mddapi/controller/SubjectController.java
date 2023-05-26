@@ -4,6 +4,9 @@ package com.openclassrooms.mddapi.controller;
 import com.openclassrooms.mddapi.mapper.SubjectMapper;
 import com.openclassrooms.mddapi.model.Subject;
 import com.openclassrooms.mddapi.service.SubjectService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,6 +20,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/subject")
 @Log4j2
+@Tag(name = "Subject", description = "The Subject API. Contains all the operations " +
+        "that can be performed a Subject.")
 public class SubjectController {
     private final SubjectService service;
     private final SubjectMapper mapper;
@@ -26,6 +31,8 @@ public class SubjectController {
         this.mapper = mapper;
     }
 
+    @Operation(summary = "Get all subjects from DB")
+    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping
     public ResponseEntity<?> findAll() {
         List<Subject> subjects = this.service.getAll();

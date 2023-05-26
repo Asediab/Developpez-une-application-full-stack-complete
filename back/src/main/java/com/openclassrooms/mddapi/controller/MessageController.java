@@ -3,6 +3,9 @@ package com.openclassrooms.mddapi.controller;
 import com.openclassrooms.mddapi.dto.MessageDto;
 import com.openclassrooms.mddapi.mapper.MessageMapper;
 import com.openclassrooms.mddapi.service.MessageService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/message")
 @Log4j2
+@Tag(name = "Message", description = "The Message API. Contains all operations " +
+        "that can be performed a Message.")
 public class MessageController {
     private final MessageService service;
     private final MessageMapper mapper;
@@ -25,6 +30,8 @@ public class MessageController {
         this.mapper = mapper;
     }
 
+    @Operation(summary = "Create a message")
+    @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping
     public ResponseEntity<?> create(@Valid @RequestBody MessageDto messageDto) {
         log.info(messageDto);

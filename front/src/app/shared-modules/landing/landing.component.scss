@@ -17,14 +17,12 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 3rem;
+  gap: 70px;
   margin-bottom: 175px;
 }
 
-.mat-button-base {
-  font-size: 16px;
-  font-weight: 600;
-  width: 9.75rem;
+.container-buttons button {
+  min-width: 250px;
 }
 
 @media only screen and (max-width: 599.98px) {
@@ -32,9 +30,7 @@
     padding-top: 58px;
     margin: 0;
   }
-  .mat-button-base:last-of-type {
-    margin-bottom: 231px;
-  }
+
   .container img {
     margin-bottom: 54px;
     width: 225px;
@@ -42,10 +38,7 @@
   .container-buttons {
     display: flex;
     flex-direction: column;
-    gap: 2.3rem;
-    margin-bottom: 0px;
-  }
-  .mat-button-base {
-    font-weight: 400;
+    gap: 30px;
+    margin-bottom: 0;
   }
 }

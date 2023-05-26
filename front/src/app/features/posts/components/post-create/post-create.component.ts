@@ -8,7 +8,7 @@ import {Router} from "@angular/router";
 import {Location} from '@angular/common';
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {take} from "rxjs";
-import {SessionService} from "../../../auth/services/session.service";
+import {SessionService} from "../../../../service/session.service";
 import {AuthService} from "../../../auth/services/auth.service";
 
 @Component({

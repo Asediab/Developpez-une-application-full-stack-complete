@@ -26,10 +26,7 @@ public class WebSecurityConfig {
             "/v3/api-docs/**",
             "/swagger-ui/**",
             "/api/auth/login",
-            "/api/auth/register",
-            "/resources/static/**",
-            "/static/**",
-            "/api/files/rentals/**"
+            "/api/auth/register"
     };
 
     private final UserDetailsServiceImpl userDetailsService;

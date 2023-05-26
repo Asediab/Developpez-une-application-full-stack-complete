@@ -5,12 +5,13 @@ import {SubjectInterface} from "../../../subjects/interfaces/subject.interface";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../services/user.service";
 import {BreakpointObserver, Breakpoints, BreakpointState} from "@angular/cdk/layout";
-import {SessionService} from "../../../auth/services/session.service";
+import {SessionService} from "../../../../service/session.service";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {SessionInformation} from "../../../auth/interfaces/sessionInformation.interface";
 import {SubscriptionService} from "../../services/subscription.service";
 import {SubscriptionInterface} from "../../interfaces/subscription.interface";
+import {AuthService} from "../../../auth/services/auth.service";
 
 @Component({
   selector: 'app-user-detail',
@@ -34,6 +35,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private sessionService: SessionService,
     private router: Router,
+    private authService: AuthService,
     private matSnackBar: MatSnackBar
   ) {
   }
@@ -48,20 +50,9 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     this.sub = this.breakpointObserver
       .observe([Breakpoints.XSmall])
       .subscribe((result: BreakpointState) => {
-        if (result.matches) {
-          this.isDesktop = false;
-        } else {
-          this.isDesktop = true;
-        }
+        this.isDesktop = !result.matches;
       });
 
-    this.form.setValue({
-      // @ts-ignore
-      firstName: this.user.firstName,
-      // @ts-ignore
-      email: this.user.email,
-      password: '',
-    });
   }
 
   public submit(): void {
@@ -132,10 +123,19 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   }
 
   private update() {
-    this.sessionService.updateUser();
-    this.user = this.sessionService.authUser;
-    console.log(this.user)
-    this.subjects = this.makeUserSubjectsSubscribeTrue(this.user?.subjects);
+    this.authService.me()
+      .subscribe(
+        (user: UserInterface) => {
+          this.user = user;
+          this.subjects = this.makeUserSubjectsSubscribeTrue(this.user?.subjects);
+          this.form.setValue({
+            // @ts-ignore
+            firstName: this.user?.firstName,
+            // @ts-ignore
+            email: this.user?.email,
+            password: '',
+          });
+        }, err => this.logOut());
   }
 
   private makeUserSubjectsSubscribeTrue(subjects: SubjectInterface[] | undefined): SubjectInterface[] {

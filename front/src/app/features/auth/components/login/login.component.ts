@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {SessionService} from "../../services/session.service";
+import {SessionService} from "../../../../service/session.service";
 import {LoginRequest} from "../../interfaces/loginRequest";
 import {SessionInformation} from "../../interfaces/sessionInformation.interface";
 import {Location} from '@angular/common';

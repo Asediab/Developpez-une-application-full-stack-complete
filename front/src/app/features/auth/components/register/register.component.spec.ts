@@ -2,7 +2,7 @@ import {ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
 
 import {RegisterComponent} from './register.component';
 import {AuthService} from "../../services/auth.service";
-import {SessionService} from "../../services/session.service";
+import {SessionService} from "../../../../service/session.service";
 import {Router} from "@angular/router";
 import {RouterTestingModule} from "@angular/router/testing";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
