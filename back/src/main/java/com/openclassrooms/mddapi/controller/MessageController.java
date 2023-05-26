@@ -34,9 +34,7 @@ public class MessageController {
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping
     public ResponseEntity<?> create(@Valid @RequestBody MessageDto messageDto) {
-        log.info(messageDto);
         this.service.save(this.mapper.toEntity(messageDto));
-        log.info(this.mapper.toEntity(messageDto));
         return ResponseEntity.ok().build();
     }
 }

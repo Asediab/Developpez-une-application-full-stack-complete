@@ -34,9 +34,7 @@ public class SubscriptionController {
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("/sub")
     public ResponseEntity<?> subscription(@Valid @RequestBody SubscriptionDto subscriptionDto) {
-        log.info(subscriptionDto);
         this.service.subscribe(this.mapper.toEntity(subscriptionDto));
-        log.info(this.mapper.toEntity(subscriptionDto));
         return ResponseEntity.ok().build();
     }
 
@@ -44,7 +42,6 @@ public class SubscriptionController {
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("/unsub")
     public ResponseEntity<?> unsubscription(@Valid @RequestBody SubscriptionDto subscriptionDto) {
-        log.info(subscriptionDto);
         this.service.unsubscribe(this.mapper.toEntity(subscriptionDto));
         return ResponseEntity.ok().build();
     }

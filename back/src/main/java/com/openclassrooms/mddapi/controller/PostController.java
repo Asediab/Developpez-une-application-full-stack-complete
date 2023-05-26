@@ -66,9 +66,7 @@ public class PostController {
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("/new")
     public ResponseEntity<?> create(@Valid @RequestBody PostDto postDto) {
-        log.info(postDto);
         Post postDto1 = this.service.create(this.mapper.toEntity(postDto));
-        log.info(this.mapper.toEntity(postDto));
         return ResponseEntity.ok().body(this.mapper.toDto(postDto1));
     }
 }
