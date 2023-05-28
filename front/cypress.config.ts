@@ -1,9 +1,13 @@
 import {defineConfig} from 'cypress'
 
 export default defineConfig({
+  fixturesFolder: "cypress/fixtures",
+  video: false,
+
   // setupNodeEvents can be defined in either
   // the e2e or component configuration
   e2e: {
+    experimentalRunAllSpecs: true,
     setupNodeEvents(on, config) {
       require('@cypress/code-coverage/task')(on, config)
       // include any other plugin code...
