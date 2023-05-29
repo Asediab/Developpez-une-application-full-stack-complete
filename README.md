@@ -1,25 +1,117 @@
 # P6-Full-Stack-reseau-dev
 
-## Front
+This project was generated with:
+> [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
+> [Spring Boot](https://spring.io/projects/spring-boot) version 3.0.6.
 
-Don't forget to install your node_modules before starting (`npm install`).
+> [OpenJDK](https://openjdk.org/projects/jdk/19/) version 17.0.1.
 
-### Development server
+> [Spring Security](https://spring.io/projects/spring-security) version 6.0.3.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Start the project
 
-### Build
+Git clone:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+> git clone https://github.com/Asediab/Developpez-une-application-full-stack-complete.git
 
-### Where to start
+Install MySQL (MySQL Community Server - GPL):
 
-As you may have seen if you already started the app, a simple home page containing a logo, a title and a button is available. If you take a look at its code (in the `home.component.html`) you will see that an external UI library is already configured in the project.
+> Port: 3306
 
-This library is `@angular/material`, it's one of the most famous in the angular ecosystem. As you can see on their docs (https://material.angular.io/), it contains a lot of highly customizable components that will help you design your interfaces quickly.
+> Create the username and the password
 
-Note: I recommend to use material however it's not mandatory, if you prefer you can get ride of it.
+> Create a new schema named: `ocr`
 
-Good luck!
+> Give rights for this username on the `ocr` schema
+
+
+Set the user's environment variables
+
+> Variable for MySQL password: `DATA_SOURCE_PASS`
+
+> Variable for MySQL username: `DATA_SOURCE_USER`
+
+> Variable for the JWT secret: `JWT_SECRET`
+
+Go inside folder:
+
+> cd Developpez-une-application-full-stack-complete
+
+### Back-end
+
+Go inside folder:
+
+> cd back
+
+Install dependencies:
+
+> mvn install
+
+Launch Back-end:
+
+> mvn spring-boot:run
+
+The data tables and test data will be created automatically using FlyWayDB.
+
+If you want to change any configuration you can modify `back-end/src/main/resources/application.properties`
+
+Endpoints are available at http://localhost:8080/
+
+Swagger is available at http://localhost:8080/swagger-ui/index.html#/
+
+### Front-end
+
+Go inside folder:
+
+> cd front
+
+Install dependencies:
+
+> npm install
+
+Launch Front-end:
+
+> npm run start
+
+Open your browser at http://localhost:4200/
+
+### Test
+
+#### Front-End
+
+Go inside folder:
+
+> cd front
+
+Launching e2e test:
+
+> npm run e2e:ci
+
+Generate coverage report (you should launch e2e test before):
+
+> npm run e2e:coverage
+
+Report is available here:
+
+> front/coverage/lcov-report/index.html
+
+#### Back-End
+
+Go inside folder:
+
+> cd back
+
+Launching test:
+
+> mvn clean test
+
+Report is available here:
+
+> /back/target/site/jacoco/index.html
+
+## Test data set
+
+> Login: `yoga@studio.com`
+
+> Pass: `1F4@sf5s6,18F4@sf5s6`

@@ -1,7 +1,6 @@
 package com.openclassrooms.mddapi.service.impl;
 
 import com.openclassrooms.mddapi.exeption.NotFoundException;
-import com.openclassrooms.mddapi.mapper.UserMapper;
 import com.openclassrooms.mddapi.model.User;
 import com.openclassrooms.mddapi.payload.request.SignupRequest;
 import com.openclassrooms.mddapi.payload.response.JwtResponse;
@@ -24,15 +23,13 @@ import java.time.LocalDateTime;
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     private final AuthenticationManager authenticationManager;
 
     private final JwtUtils jwtUtils;
 
-    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper, AuthenticationManager authenticationManager, JwtUtils jwtUtils) {
+    public UserServiceImpl(UserRepository userRepository, AuthenticationManager authenticationManager, JwtUtils jwtUtils) {
         this.userRepository = userRepository;
-        this.userMapper = userMapper;
         this.authenticationManager = authenticationManager;
         this.jwtUtils = jwtUtils;
     }
