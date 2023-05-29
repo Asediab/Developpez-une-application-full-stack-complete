@@ -1,4 +1,5 @@
 import {defineConfig} from 'cypress'
+import * as registerCodeCoverageTasks from '@cypress/code-coverage/task';
 
 export default defineConfig({
   fixturesFolder: "cypress/fixtures",
@@ -9,6 +10,7 @@ export default defineConfig({
   e2e: {
     experimentalRunAllSpecs: true,
     setupNodeEvents(on, config) {
+      registerCodeCoverageTasks(on, config);
       require('@cypress/code-coverage/task')(on, config)
       // include any other plugin code...
 

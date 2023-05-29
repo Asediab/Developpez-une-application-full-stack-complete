@@ -1,1 +1,443 @@
-{}
+{
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/jest.config.js": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/jest.config.js",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/cypress.config.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/cypress.config.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/setup-jest.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/setup-jest.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/test-config.helper.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/test-config.helper.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/polyfills.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/polyfills.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/app-routing.module.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/app-routing.module.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/app.component.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/app.component.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/app.module.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/app.module.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/environments/environment.prod.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/environments/environment.prod.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/environments/environment.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/environments/environment.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/guards/auth.guard.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/guards/auth.guard.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/interceptors/jwt.interceptor.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/interceptors/jwt.interceptor.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/service/session.service.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/service/session.service.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/shared-modules/shared-modules.module.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/shared-modules/shared-modules.module.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/auth/auth-routing.module.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/auth/auth-routing.module.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/auth/auth.module.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/auth/auth.module.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/posts/posts-routing.module.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/posts/posts-routing.module.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/posts/posts.module.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/posts/posts.module.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/subjects/subjects-routing.module.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/subjects/subjects-routing.module.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/subjects/subjects.module.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/subjects/subjects.module.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/user/user-routing.module.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/user/user-routing.module.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/user/user.module.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/user/user.module.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/shared-modules/header/header.component.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/shared-modules/header/header.component.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/shared-modules/landing/landing.component.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/shared-modules/landing/landing.component.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/shared-modules/not-found/not-found.component.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/shared-modules/not-found/not-found.component.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/auth/interfaces/loginRequest.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/auth/interfaces/loginRequest.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/auth/interfaces/registerRequest.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/auth/interfaces/registerRequest.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/auth/interfaces/sessionInformation.interface.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/auth/interfaces/sessionInformation.interface.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/auth/services/auth.service.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/auth/services/auth.service.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/posts/interfaces/message.interface.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/posts/interfaces/message.interface.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/posts/interfaces/post.interface.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/posts/interfaces/post.interface.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/posts/services/comments.service.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/posts/services/comments.service.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/posts/services/posts.service.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/posts/services/posts.service.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/subjects/interfaces/subject.interface.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/subjects/interfaces/subject.interface.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/subjects/services/subjects.service.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/subjects/services/subjects.service.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/user/interfaces/subscription.interface.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/user/interfaces/subscription.interface.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/user/interfaces/user.interface.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/user/interfaces/user.interface.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/user/services/subscription.service.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/user/services/subscription.service.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/user/services/user.service.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/user/services/user.service.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/auth/components/login/login.component.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/auth/components/login/login.component.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/auth/components/register/register.component.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/auth/components/register/register.component.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/posts/components/comments/comments.component.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/posts/components/comments/comments.component.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/posts/components/post-card/post-card.component.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/posts/components/post-card/post-card.component.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/posts/components/post-create/post-create.component.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/posts/components/post-create/post-create.component.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/posts/components/post-detail/post-detail.component.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/posts/components/post-detail/post-detail.component.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/posts/components/posts-list/posts-list.component.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/posts/components/posts-list/posts-list.component.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/subjects/components/subject-card/subject-card.component.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/subjects/components/subject-card/subject-card.component.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/subjects/components/subjects-list/subjects-list.component.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/subjects/components/subjects-list/subjects-list.component.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/user/components/user-detail/user-detail.component.ts": {
+    "path": "/home/bog/IdeaProjects/Developpez-une-application-full-stack-complete/front/src/app/features/user/components/user-detail/user-detail.component.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  }
+}

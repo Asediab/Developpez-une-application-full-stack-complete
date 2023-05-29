@@ -15,7 +15,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "outputPath": "dist/front",
             "index": "src/index.html",
@@ -151,7 +151,7 @@
         "e2e-ci": {
           "builder": "@cypress/schematic:cypress",
           "options": {
-            "browser": "chrome",
+            "browser": "electron",
             "devServerTarget": "front:serve-coverage",
             "headless": true,
             "watch": false
