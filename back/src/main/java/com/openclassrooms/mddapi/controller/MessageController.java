@@ -31,6 +31,7 @@ public class MessageController {
     }
 
     @Operation(summary = "Create a message")
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Object of MessageDto.class")
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping
     public ResponseEntity<?> create(@Valid @RequestBody MessageDto messageDto) {

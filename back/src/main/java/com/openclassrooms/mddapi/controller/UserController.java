@@ -6,6 +6,7 @@ import com.openclassrooms.mddapi.mapper.UserUpdateMapper;
 import com.openclassrooms.mddapi.model.User;
 import com.openclassrooms.mddapi.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -45,7 +46,7 @@ public class UserController {
     @Operation(summary = "Get an user by his id")
     @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/{id}")
-    public ResponseEntity<?> findById(@PathVariable("id") String id) {
+    public ResponseEntity<?> findById(@Parameter(description = "id of User to be searched") @PathVariable("id") String id) {
         try {
             User user = this.service.getById(Long.valueOf(id));
             if (user == null) {
@@ -59,6 +60,7 @@ public class UserController {
 
     @Operation(summary = "Delete an user by his id")
     @SecurityRequirement(name = "Bearer Authentication")
+    @Parameter(description = "id of User to be deleted")
     @DeleteMapping("{id}")
     public ResponseEntity<?> delete(@PathVariable("id") String id) {
         try {
@@ -82,6 +84,7 @@ public class UserController {
     }
 
     @Operation(summary = "Update an user")
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Object of UserUpdateDto.class")
     @SecurityRequirement(name = "Bearer Authentication")
     @PutMapping
     public ResponseEntity<?> update(@Valid @RequestBody UserUpdateDto userUpdateDto) {
