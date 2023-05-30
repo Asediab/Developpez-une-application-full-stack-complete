@@ -31,6 +31,7 @@ public class SubscriptionController {
     }
 
     @Operation(summary = "Create a new subscription on a subject")
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Object of SubscriptionDto.class")
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("/sub")
     public ResponseEntity<?> subscription(@Valid @RequestBody SubscriptionDto subscriptionDto) {
@@ -39,6 +40,7 @@ public class SubscriptionController {
     }
 
     @Operation(summary = "Delete a subscription on a subject")
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Object of SubscriptionDto.class")
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("/unsub")
     public ResponseEntity<?> unsubscription(@Valid @RequestBody SubscriptionDto subscriptionDto) {

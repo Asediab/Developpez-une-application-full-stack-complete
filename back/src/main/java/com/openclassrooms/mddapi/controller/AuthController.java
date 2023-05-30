@@ -32,13 +32,16 @@ public class AuthController {
         this.mapper = mapper;
     }
 
+
     @Operation(summary = "Login an user")
     @PostMapping("/login")
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "LoginRequest form with Login and Password")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         return service.createToken(loginRequest.getEmail(), loginRequest.getPassword());
     }
 
     @Operation(summary = "Create new user")
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "SignupRequest form with a new User data")
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         if (service.userExistence(signUpRequest.getEmail())) {

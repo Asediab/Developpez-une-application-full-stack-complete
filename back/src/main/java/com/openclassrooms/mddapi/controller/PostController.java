@@ -5,6 +5,7 @@ import com.openclassrooms.mddapi.mapper.PostMapper;
 import com.openclassrooms.mddapi.model.Post;
 import com.openclassrooms.mddapi.service.PostService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -50,7 +51,7 @@ public class PostController {
     @Operation(summary = "Get a post by his id")
     @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/{id}")
-    public ResponseEntity<?> findById(@PathVariable("id") String id) {
+    public ResponseEntity<?> findById(@Parameter(description = "id of Post to be searched") @PathVariable("id") String id) {
         try {
             Post post = this.service.getById(Long.valueOf(id));
             if (post == null) {
@@ -63,6 +64,7 @@ public class PostController {
     }
 
     @Operation(summary = "Create a new post")
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Object of PostDto.class")
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("/new")
     public ResponseEntity<?> create(@Valid @RequestBody PostDto postDto) {
