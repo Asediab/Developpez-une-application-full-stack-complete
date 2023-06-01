@@ -36,6 +36,11 @@ public class PostController {
         this.mapper = mapper;
     }
 
+    /**
+     * Get all posts by User
+     *
+     * @return The HTTP response with List of Posts
+     */
     @Operation(summary = "Get all posts on the subject of which the user is subscribed")
     @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping
@@ -48,6 +53,12 @@ public class PostController {
 
     }
 
+    /**
+     * Get the post by Id
+     *
+     * @param id id of Post to be searched
+     * @return The HTTP response with the Post
+     */
     @Operation(summary = "Get a post by his id")
     @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/{id}")
@@ -63,6 +74,12 @@ public class PostController {
         }
     }
 
+    /**
+     * Create a new post
+     *
+     * @param postDto credential for creating a new Post
+     * @return The HTTP response with the Post created
+     */
     @Operation(summary = "Create a new post")
     @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Object of PostDto.class")
     @SecurityRequirement(name = "Bearer Authentication")

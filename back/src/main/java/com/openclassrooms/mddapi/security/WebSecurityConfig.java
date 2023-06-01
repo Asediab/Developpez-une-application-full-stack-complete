@@ -58,6 +58,9 @@ public class WebSecurityConfig {
                 .build();
     }
 
+    /**
+     * Filter Chain for configuration Spring Security
+     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors()

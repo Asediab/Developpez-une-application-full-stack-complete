@@ -43,6 +43,12 @@ public class UserController {
         this.updateMapper = updateMapper;
     }
 
+    /**
+     * Get a user by his id
+     *
+     * @param id id of a User to be searched
+     * @return The HTTP response with User
+     */
     @Operation(summary = "Get an user by his id")
     @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/{id}")
@@ -58,6 +64,12 @@ public class UserController {
         }
     }
 
+    /**
+     * Delete a user by his id
+     *
+     * @param id id of a User to be deleted
+     * @return The HTTP response
+     */
     @Operation(summary = "Delete an user by his id")
     @SecurityRequirement(name = "Bearer Authentication")
     @Parameter(description = "id of User to be deleted")
@@ -83,6 +95,12 @@ public class UserController {
         }
     }
 
+    /**
+     * Update user email, name and password
+     *
+     * @param userUpdateDto The new user data
+     * @return The HTTP response with User
+     */
     @Operation(summary = "Update an user")
     @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Object of UserUpdateDto.class")
     @SecurityRequirement(name = "Bearer Authentication")

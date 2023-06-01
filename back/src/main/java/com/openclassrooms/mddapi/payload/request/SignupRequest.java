@@ -5,6 +5,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+/**
+ * Credential for SignUp user
+ */
 @Data
 public class SignupRequest {
     @NotBlank

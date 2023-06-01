@@ -3,6 +3,9 @@ package com.openclassrooms.mddapi.payload.response;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Response with Token
+ */
 @Getter
 @Setter
 public class JwtResponse {

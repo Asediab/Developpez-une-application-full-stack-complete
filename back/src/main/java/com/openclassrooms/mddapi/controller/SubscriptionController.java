@@ -30,6 +30,12 @@ public class SubscriptionController {
         this.mapper = mapper;
     }
 
+    /**
+     * Create a new subscription on a subject
+     *
+     * @param subscriptionDto credential for creating a new Subscription
+     * @return The HTTP response
+     */
     @Operation(summary = "Create a new subscription on a subject")
     @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Object of SubscriptionDto.class")
     @SecurityRequirement(name = "Bearer Authentication")
@@ -39,6 +45,12 @@ public class SubscriptionController {
         return ResponseEntity.ok().build();
     }
 
+    /**
+     * Delete a subscription on a subject
+     *
+     * @param subscriptionDto credential for creating a new UnSubscription
+     * @return The HTTP response
+     */
     @Operation(summary = "Delete a subscription on a subject")
     @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Object of SubscriptionDto.class")
     @SecurityRequirement(name = "Bearer Authentication")

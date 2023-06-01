@@ -27,6 +27,9 @@ public class JwtUtils {
     @Value("${oc.app.jwtExpirationMs}")
     private int jwtExpirationMs;
 
+    /**
+     * Generation JWT Token
+     */
     public String generateJwtToken(Authentication authentication) {
 
         UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
@@ -43,6 +46,9 @@ public class JwtUtils {
         return Jwts.parserBuilder().setSigningKey(jwtSecret).build().parseClaimsJws(token).getBody().getSubject();
     }
 
+    /**
+     * Validation JWT Token
+     */
     public boolean validateJwtToken(String authToken) {
         try {
             Jwts.parserBuilder().setSigningKey(jwtSecret).build().parseClaimsJws(authToken);

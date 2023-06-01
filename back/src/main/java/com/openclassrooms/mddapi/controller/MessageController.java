@@ -30,6 +30,12 @@ public class MessageController {
         this.mapper = mapper;
     }
 
+    /**
+     * Create a comment
+     *
+     * @param messageDto Credential for creating the comment
+     * @return The HTTP response
+     */
     @Operation(summary = "Create a message")
     @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Object of MessageDto.class")
     @SecurityRequirement(name = "Bearer Authentication")

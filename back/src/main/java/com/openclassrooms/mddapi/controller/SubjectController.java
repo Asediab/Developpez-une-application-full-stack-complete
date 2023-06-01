@@ -31,6 +31,11 @@ public class SubjectController {
         this.mapper = mapper;
     }
 
+    /**
+     * Get all subjects
+     *
+     * @return The HTTP response with a List of Subjects
+     */
     @Operation(summary = "Get all subjects from DB")
     @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping

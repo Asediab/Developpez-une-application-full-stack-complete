@@ -32,7 +32,12 @@ public class AuthController {
         this.mapper = mapper;
     }
 
-
+    /**
+     * User login
+     *
+     * @param loginRequest User login data
+     * @return The HTTP response with the Token
+     */
     @Operation(summary = "Login an user")
     @PostMapping("/login")
     @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "LoginRequest form with Login and Password")
@@ -40,6 +45,12 @@ public class AuthController {
         return service.createToken(loginRequest.getEmail(), loginRequest.getPassword());
     }
 
+    /**
+     * Register a new user
+     *
+     * @param signUpRequest The user credentials to register
+     * @return The HTTP response with the Token
+     */
     @Operation(summary = "Create new user")
     @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "SignupRequest form with a new User data")
     @PostMapping("/register")
@@ -54,6 +65,11 @@ public class AuthController {
         return service.createToken(signUpRequest.getEmail(), password);
     }
 
+    /**
+     * Get a curent authenticated user
+     *
+     * @return The HTTP response with UserDto credential
+     */
     @Operation(summary = "Take a curent authenticated user")
     @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/me")
