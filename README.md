@@ -58,8 +58,6 @@ If you want to change any configuration you can modify `back-end/src/main/resour
 
 Endpoints are available at http://localhost:8080/
 
-Swagger is available at http://localhost:8080/swagger-ui/index.html#/
-
 ### Front-end
 
 Go inside folder:
@@ -88,11 +86,11 @@ Launching e2e test:
 
 > npm run e2e:ci
 
-Generate coverage report (you should launch e2e test before):
+Generate a coverage report (you should launch e2e test before):
 
 > npm run e2e:coverage
 
-Report is available here:
+The Report is available here:
 
 > front/coverage/lcov-report/index.html
 
@@ -106,9 +104,20 @@ Launching test:
 
 > mvn clean test
 
-Report is available here:
+The Report is available here:
 
 > /back/target/site/jacoco/index.html
+
+### Documentation
+
+Generate the Back-End project Javadoc
+> Inside ./back execute this Maven command: mvn javadoc:javadoc -e
+
+> Open: ./back/target/site/apidocs/index.html
+
+Back-End API documentation
+
+> Swagger is available at http://localhost:8080/swagger-ui/index.html#/
 
 ## Test data set
 
